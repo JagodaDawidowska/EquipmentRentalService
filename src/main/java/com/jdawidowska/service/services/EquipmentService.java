@@ -2,13 +2,12 @@ package com.jdawidowska.service.services;
 
 import org.springframework.stereotype.Service;
 
-import com.jdawidowska.service.data.entities.Equipment;
 import com.jdawidowska.service.data.repos.EquipmentRepository;
 
 @Service
 public class EquipmentService {
 
-    private EquipmentRepository equipmentRepo;
+    private final EquipmentRepository equipmentRepo;
 
     public EquipmentService(EquipmentRepository sprzetRepo) {
         this.equipmentRepo = sprzetRepo;
