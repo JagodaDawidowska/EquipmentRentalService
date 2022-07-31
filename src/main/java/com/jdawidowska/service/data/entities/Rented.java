@@ -19,5 +19,5 @@ public class Rented {
     Long idCustomer;
     Long idItem;
     Integer amount;
-//
+
 }
