@@ -1,0 +1,26 @@
+2022-08-01 21:03:45 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT * FROM RENTED_INVENTORY INVENTORY CUSTOMER[*]"
+Syntax error in SQL statement "SELECT * FROM RENTED_INVENTORY INVENTORY CUSTOMER[*]"; SQL statement:
+SELECT * FROM RENTED_INVENTORY INVENTORY CUSTOMER [42000-200]
+2022-08-01 21:03:48 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT * FROM RENTED_INVENTORY INVENTORY CUSTOMER[*]"
+Syntax error in SQL statement "SELECT * FROM RENTED_INVENTORY INVENTORY CUSTOMER[*]"; SQL statement:
+SELECT * FROM RENTED_INVENTORY INVENTORY CUSTOMER [42000-200]
+2022-08-01 21:09:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "ALTER TABLE RENTED_INVENTORY ADD COLUMN 'id_item'[*] BIGINT"; oczekiwano "identifier"
+Syntax error in SQL statement "ALTER TABLE RENTED_INVENTORY ADD COLUMN 'id_item'[*] BIGINT"; expected "identifier"; SQL statement:
+alter table rented_inventory add column 'id_item' bigint [42001-200]
+2022-08-01 21:43:26 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "CREATE MAX[*]
+( IMIE VARCHAR(20),
+ WIEK INT)"; oczekiwano "OR, FORCE, VIEW, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, DATATYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL, GLOBAL, TEMP, TEMPORARY, TABLE, SYNONYM, PRIMARY, UNIQUE, HASH, SPATIAL, INDEX"
+Syntax error in SQL statement "CREATE MAX[*]
+( IMIE VARCHAR(20),
+ WIEK INT)"; expected "OR, FORCE, VIEW, ALIAS, SEQUENCE, USER, TRIGGER, ROLE, SCHEMA, CONSTANT, DOMAIN, TYPE, DATATYPE, AGGREGATE, LINKED, MEMORY, CACHED, LOCAL, GLOBAL, TEMP, TEMPORARY, TABLE, SYNONYM, PRIMARY, UNIQUE, HASH, SPATIAL, INDEX"; SQL statement:
+Create max
+( imie varchar(20),
+ wiek int) [42001-200]
+2022-08-01 21:44:06 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DROP MAX[*]"; oczekiwano "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
+Syntax error in SQL statement "DROP MAX[*]"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
+drop max [42001-200]

@@ -1,4 +1,4 @@
-package com.equipmentRentalService.service.api.controllers;
+package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
