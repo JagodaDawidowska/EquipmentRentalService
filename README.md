@@ -2,7 +2,6 @@
 backend service for my engineers thesis
 
 
-
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
@@ -11,21 +10,19 @@ backend service for my engineers thesis
 
 
 ## General Information
-This project is a microserivce to rental a workout equipment.
-The project contains a android client aplicatoion and backend in SpringBoot framework.
+This project is a microservice for workout equipment renting.
+The project contains backend in SpringBoot framework.
 
 ## Technologies Used
-- Android Studio - moblie client application for frontend.
-- SpringBoot - serverside application for bisnes logic, comunication beetwen client and database. 
-- H2 - light embedded in SpingBoot databes 
+- SpringBoot - serverside application for biznes logic, comunication beetwen client and database. 
+- H2 - light embedded in SpringBoot database. 
 - Language - Java
 
 ## Features
 List the ready features here:
 - Entities ready to develop 
-- a few controlles 
+- a few controllers 
 - logic to rent and return the equipment
-- android client to handle the logic of rental
 
 
 ## Project Status
