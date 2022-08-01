@@ -14,7 +14,8 @@ This project is a microservice for workout equipment renting.
 The project contains backend in SpringBoot framework.
 
 ## Technologies Used
-- SpringBoot - serverside application for biznes logic, comunication beetwen client and database. 
+- SpringBoot - serverside application for business
+  logic, communication between client and database. 
 - H2 - light embedded in SpringBoot database. 
 - Language - Java
 
