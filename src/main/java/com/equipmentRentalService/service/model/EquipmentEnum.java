@@ -1,4 +1,4 @@
-package com.jdawidowska.service.model;
+package com.equipmentRentalService.service.model;
 
 public enum EquipmentEnum {
     TASMY_RTX,

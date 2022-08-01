@@ -1,4 +1,4 @@
-package com.jdawidowska.service.data.entities;
+package com.equipmentRentalService.service.data.entities;
 
 import lombok.*;
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @ToString
 @RequiredArgsConstructor
 
-public class Rented {
+public class Rented_Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

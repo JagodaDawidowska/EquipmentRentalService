@@ -1,14 +1,12 @@
-package com.jdawidowska.service.services;
+package com.equipmentRentalService.service.services;
 
 import org.springframework.stereotype.Service;
-
-import com.jdawidowska.service.data.repos.EquipmentRepository;
 
 @Service
 public class EquipmentService {
 
-    private final EquipmentRepository equipmentRepo;
-
+ //   private final EquipmentRepository equipmentRepo;
+/*
     public EquipmentService(EquipmentRepository sprzetRepo) {
         this.equipmentRepo = sprzetRepo;
     }
@@ -36,4 +34,6 @@ public class EquipmentService {
             return false;
         }
     }
+
+ */
 }

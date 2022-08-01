@@ -1,4 +1,4 @@
-package com.jdawidowska.service.api.dto.request;
+package com.equipmentRentalService.service.api.dto.request;
 
 public class CustomerRequest {
 

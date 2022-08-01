@@ -1,6 +1,6 @@
-package com.jdawidowska.service.data.repos;
+package com.equipmentRentalService.service.data.repos;
 
-import com.jdawidowska.service.data.entities.Inventory;
+import com.equipmentRentalService.service.data.entities.Inventory;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

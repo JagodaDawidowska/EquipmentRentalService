@@ -1,6 +1,6 @@
-package com.jdawidowska.service.data.entities;
+package com.equipmentRentalService.service.data.entities;
 
-import com.jdawidowska.service.model.EquipmentEnum;
+import com.equipmentRentalService.service.model.EquipmentEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,14 +11,17 @@ import javax.persistence.*;
 @ToString
 @RequiredArgsConstructor
 @Entity
+
+
 public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Enumerated(EnumType.STRING)
-    EquipmentEnum name;
-    Integer total_amount;
-    Integer avaiable_amount;
+
+    EquipmentEnum itemName;
+    Integer totalAmount;
+    Integer avaiableAmount;
 
 }
