@@ -1,8 +1,7 @@
-package com.jdawidowska.service.data.entities;
+package com.jdawidowska.equipmentRentalService.data.entities;
 
-import com.jdawidowska.service.model.EquipmentEnum;
+import com.jdawidowska.equipmentRentalService.model.EquipmentEnum;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Data
@@ -17,8 +16,7 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Enumerated(EnumType.STRING)
-    EquipmentEnum name;
-    Integer total_amount;
-    Integer avaiable_amount;
-
+    EquipmentEnum itemName;
+    Integer totalAmount;
+    Integer availableAmount;
 }

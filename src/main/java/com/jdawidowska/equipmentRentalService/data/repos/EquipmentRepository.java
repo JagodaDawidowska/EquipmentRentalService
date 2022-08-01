@@ -1,4 +1,4 @@
-package com.jdawidowska.service.data.repos;
+package com.jdawidowska.equipmentRentalService.data.repos;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface EquipmentRepository /*extends CrudRepository<Equipment, Long>*/{
 
 	//zeby uzywac UPDATE / DELETE musza byc adnotacje transactional i modyfing
-	@Transactional
+/*	@Transactional
 	@Modifying
 	@Query(value="UPDATE Equipment "
 			+ "SET available_Amount = available_Amount - 1 "
@@ -25,5 +25,5 @@ public interface EquipmentRepository /*extends CrudRepository<Equipment, Long>*/
 			+ "WHERE id = :id "
 			+ "AND available_Amount >= 0")
 	public void returnEquipment(Long id);
-
+*/
 }

@@ -1,8 +1,8 @@
-package com.jdawidowska.service.services;
+package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.service.api.dto.request.CustomerRequest;
-import com.jdawidowska.service.data.entities.Customer;
-import com.jdawidowska.service.data.repos.CustomersRepository;
+import com.jdawidowska.equipmentRentalService.api.dto.request.CustomerRequest;
+import com.jdawidowska.equipmentRentalService.data.entities.Customer;
+import com.jdawidowska.equipmentRentalService.data.repos.CustomersRepository;
 import org.springframework.stereotype.Service;
 
 @Service

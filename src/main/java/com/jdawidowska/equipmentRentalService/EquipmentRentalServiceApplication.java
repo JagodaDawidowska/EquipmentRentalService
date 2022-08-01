@@ -1,4 +1,4 @@
-package com.jdawidowska.service;
+package com.jdawidowska.equipmentRentalService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

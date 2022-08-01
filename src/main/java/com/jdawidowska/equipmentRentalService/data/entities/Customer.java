@@ -1,4 +1,4 @@
-package com.jdawidowska.service.data.entities;
+package com.jdawidowska.equipmentRentalService.data.entities;
 
 import lombok.*;
 
@@ -10,14 +10,14 @@ import javax.persistence.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-
-public class Rented {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Long idCustomer;
-    Long idItem;
-    Integer amount;
+    String name;
+    String surname;
+    String email;
+    String password;
 
 }

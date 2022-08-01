@@ -1,7 +1,7 @@
-package com.jdawidowska.service.api.controllers;
+package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.jdawidowska.service.api.dto.request.CustomerRequest;
-import com.jdawidowska.service.services.CustomersService;
+import com.jdawidowska.equipmentRentalService.api.dto.request.CustomerRequest;
+import com.jdawidowska.equipmentRentalService.services.CustomersService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
