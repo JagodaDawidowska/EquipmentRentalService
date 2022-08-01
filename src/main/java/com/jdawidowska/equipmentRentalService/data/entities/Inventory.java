@@ -10,17 +10,13 @@ import javax.persistence.*;
 @ToString
 @RequiredArgsConstructor
 @Entity
-
-
 public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Enumerated(EnumType.STRING)
-
     EquipmentEnum itemName;
     Integer totalAmount;
-    Integer avaiableAmount;
-
+    Integer availableAmount;
 }

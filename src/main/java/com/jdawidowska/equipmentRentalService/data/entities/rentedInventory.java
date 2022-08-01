@@ -10,8 +10,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-
-public class Rented_Inventory {
+public class rentedInventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
