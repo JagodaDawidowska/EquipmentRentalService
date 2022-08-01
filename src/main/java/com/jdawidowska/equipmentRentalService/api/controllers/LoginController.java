@@ -1,6 +1,6 @@
-package com.equipmentRentalService.service.api.controllers;
+package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.equipmentRentalService.service.services.CustomersService;
+import com.jdawidowska.equipmentRentalService.services.CustomersService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

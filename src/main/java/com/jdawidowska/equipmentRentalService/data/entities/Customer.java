@@ -1,4 +1,4 @@
-package com.equipmentRentalService.service.data.entities;
+package com.jdawidowska.equipmentRentalService.data.entities;
 
 import lombok.*;
 

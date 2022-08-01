@@ -1,4 +1,4 @@
-package com.equipmentRentalService.service.data.repos;
+package com.jdawidowska.equipmentRentalService.data.repos;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

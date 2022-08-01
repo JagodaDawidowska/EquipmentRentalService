@@ -1,4 +1,4 @@
-package com.equipmentRentalService.service.services;
+package com.jdawidowska.equipmentRentalService.services;
 
 import org.springframework.stereotype.Service;
 
