@@ -24,3 +24,11 @@ Create max
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DROP MAX[*]"; oczekiwano "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"
 Syntax error in SQL statement "DROP MAX[*]"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE, SYNONYM"; SQL statement:
 drop max [42001-200]
+2022-08-02 19:55:40 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"
+Data conversion error converting "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."INVENTORY"("ID","AVAIABLE_AMOUNT","ITEM_NAME","TOTAL_AMOUNT","AVAILABLE_AMOUNT")VALUES(?,?,?,?,?) [22018-200]
+2022-08-02 19:55:40 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"
+Data conversion error converting "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"; SQL statement:
+INSERT INTO "PUBLIC"."INVENTORY"("ID","AVAIABLE_AMOUNT","ITEM_NAME","TOTAL_AMOUNT","AVAILABLE_AMOUNT")VALUES(?,?,?,?,?) [22018-200]

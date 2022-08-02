@@ -10,4 +10,5 @@ public class EquipmentRentalServiceApplication {
 		SpringApplication.run(EquipmentRentalServiceApplication.class, args);
 	}
 
+	//
 }
