@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InventoryService {
-    private InventoryRepository inventoryRepository;
+    private final InventoryRepository inventoryRepository;
 
     public InventoryService(InventoryRepository inventoryRepository) {
         this.inventoryRepository = inventoryRepository;
     }
 
-    public 	Iterable<Inventory> findAll()
-    {
+    public Iterable<Inventory> findAll() {
         return inventoryRepository.findAll();
     }
 

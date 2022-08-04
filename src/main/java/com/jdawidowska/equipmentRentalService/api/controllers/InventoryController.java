@@ -17,8 +17,7 @@ public class InventoryController {
     }
 
     @GetMapping("/showResources")
-    public 	Iterable<Inventory> findAll()
-    {
+    public Iterable<Inventory> findAll() {
         return inventoryService.findAll();
     }
 
