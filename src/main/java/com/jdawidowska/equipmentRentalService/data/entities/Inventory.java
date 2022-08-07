@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 @Entity
 public class Inventory {
 
@@ -19,13 +20,5 @@ public class Inventory {
     Integer totalAmount;
     Integer availableAmount;
 
-    public Inventory(Long id, EquipmentEnum itemName, Integer totalAmount, Integer availableAmount) {
-        this.id = id;
-        this.itemName = itemName;
-        this.totalAmount = totalAmount;
-        this.availableAmount = availableAmount;
-    }
 
-    public Inventory() {
-    }
 }

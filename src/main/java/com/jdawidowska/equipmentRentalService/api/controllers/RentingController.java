@@ -1,44 +1,32 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.RenteringRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.RentingRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.MessageEnum;
-import com.jdawidowska.equipmentRentalService.api.dto.response.RenteringResponse;
-import com.jdawidowska.equipmentRentalService.services.RenteringService;
-import org.springframework.data.annotation.Id;
+import com.jdawidowska.equipmentRentalService.api.dto.response.RentingResponse;
+import com.jdawidowska.equipmentRentalService.services.RentingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/renting")
 public class RentingController {
 
-    public final RenteringService renteringService;
+    public final RentingService rentingService;
 
-    public RentingController(RenteringService renteringService) {
-        this.renteringService = renteringService;
+    public RentingController(RentingService rentingService) {
+        this.rentingService = rentingService;
     }
 
-    //nie widziałam zadnego ResponseEntity z postem
-    //pozniej sprawdze jak sie zwraca kody httpstatusu bo to chyba wymaga restTample
     @PostMapping
-    public ResponseEntity<RenteringResponse> rent(@RequestBody RenteringRequest renteringRequest, @RequestParam("IdItem") Long IdItem){
+    public ResponseEntity<RentingResponse> rent(@RequestBody RentingRequest rentingRequest) {
 
-
-        //ify(biore metode rent z service co zwraca booolean
-        if(renteringService.rent(renteringRequest, IdItem)==true){
-            RenteringResponse correctResponse = new RenteringResponse(MessageEnum.POPRAWNE_WYPOZYCZENIE);
-            renteringService.rent(renteringRequest,IdItem);
+        if (rentingService.rent(rentingRequest) == true) {
+            RentingResponse correctResponse = new RentingResponse(MessageEnum.RENT_SUCCESS);
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
-        }else{
-            RenteringResponse incorrectResponse = new RenteringResponse(MessageEnum.POPRAWNE_WYPOZYCZENIE);
+        } else {
+            RentingResponse incorrectResponse = new RentingResponse(MessageEnum.RENT_FAIL);
             return new ResponseEntity<>(incorrectResponse, HttpStatus.BAD_REQUEST);
-                                                            //chyba bardziej brak zasobu ?
         }
-
-
-
     }
 }

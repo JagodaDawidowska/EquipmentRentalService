@@ -11,11 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 public interface InventoryRepository extends CrudRepository<Inventory, Long>{
     @Transactional
     @Modifying
-    @Query(value="UPDATE Inventory"
-            + "SET available_Amount = :available_Amount - 1 "
+    @Query(value="UPDATE Inventory "
+            + "SET available_Amount = available_Amount - 1 "
             + "WHERE id = :id "
-            + "AND availableAmount > 0")
+            + "AND available_Amount > 0")
     public void lendItem(Long id);
+
 
     //potrzebuje id do tego
 //    @Query(value = "SELECT available_Amount from Inventory")

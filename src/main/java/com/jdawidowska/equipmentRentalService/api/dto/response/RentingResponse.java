@@ -1,9 +1,9 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
-public class RenteringResponse {
+public class RentingResponse {
     public MessageEnum meassage;
 
-    public RenteringResponse(MessageEnum meassage) {
+    public RentingResponse(MessageEnum meassage) {
         this.meassage = meassage;
     }
 
