@@ -17,11 +17,4 @@ public interface InventoryRepository extends CrudRepository<Inventory, Long>{
             + "AND available_Amount > 0")
     public void lendItem(Long id);
 
-
-    //potrzebuje id do tego
-//    @Query(value = "SELECT available_Amount from Inventory")
-//    public Integer getByAvailableAmount(Long id);
-//    //availableAmount
-//    @Override
-//    Optional<Inventory> findById(Long aLong);
 }

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RentingService {
 
-    public final InventoryRepository inventoryRepository;
-    public final CustomersRepository customersRepository;
+    private final InventoryRepository inventoryRepository;
+    private final CustomersRepository customersRepository;
     public final RentedInventoryRepository rentedInventoryRepository;
 
     public RentingService(InventoryRepository inventoryRepository, CustomersRepository customersRepository, RentedInventoryRepository rentedInventoryRepository) {

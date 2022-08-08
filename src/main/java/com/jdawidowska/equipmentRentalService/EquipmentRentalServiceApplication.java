@@ -3,6 +3,7 @@ package com.jdawidowska.equipmentRentalService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class EquipmentRentalServiceApplication {
 
@@ -10,5 +11,4 @@ public class EquipmentRentalServiceApplication {
 		SpringApplication.run(EquipmentRentalServiceApplication.class, args);
 	}
 
-	//
 }

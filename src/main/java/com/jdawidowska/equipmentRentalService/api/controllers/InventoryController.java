@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/inventory")
 public class InventoryController {
 
-    public final InventoryService inventoryService;
+    private final InventoryService inventoryService;
 
     public InventoryController(InventoryService inventoryService) {
         this.inventoryService = inventoryService;

@@ -2,8 +2,8 @@ package com.jdawidowska.equipmentRentalService.api.dto.request;
 
 public class RentingRequest {
 
-    public long idCustomer;
-    public long idItem;
+    private long idCustomer;
+    private long idItem;
 
     public RentingRequest(long idCustomer, long idItem) {
         this.idCustomer = idCustomer;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/renting")
 public class RentingController {
 
-    public final RentingService rentingService;
+    private final RentingService rentingService;
 
     public RentingController(RentingService rentingService) {
         this.rentingService = rentingService;
