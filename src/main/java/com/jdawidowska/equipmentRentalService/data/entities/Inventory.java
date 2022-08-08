@@ -19,4 +19,6 @@ public class Inventory {
     EquipmentEnum itemName;
     Integer totalAmount;
     Integer availableAmount;
+
+
 }
