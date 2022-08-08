@@ -3,15 +3,15 @@ package com.jdawidowska.equipmentRentalService.api.dto.response;
 public class RentingResponse {
     private MessageEnum message;
 
-    public RentingResponse(MessageEnum meassage) {
-        this.message = meassage;
+    public RentingResponse(MessageEnum message) {
+        this.message = message;
     }
 
-    public MessageEnum getMeassage() {
+    public MessageEnum getMessage() {
         return message;
     }
 
-    public void setMeassage(MessageEnum meassage) {
-        this.message = meassage;
+    public void setMessage(MessageEnum message) {
+        this.message = message;
     }
 }
