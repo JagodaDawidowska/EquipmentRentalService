@@ -17,4 +17,11 @@ public interface InventoryRepository extends CrudRepository<Inventory, Long>{
             + "AND available_Amount > 0")
     public void lendItem(Long id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE Inventory "
+    + "SET available_Amount = available_Amount + 1 "
+    + "WHERE id = :id "
+    + "and available_Amount >= 0")
+    public void returnItem(Long id);
 }

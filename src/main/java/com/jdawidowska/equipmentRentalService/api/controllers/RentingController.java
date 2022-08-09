@@ -19,6 +19,7 @@ public class RentingController {
     }
 
     @PostMapping
+    @RequestMapping("/rent")
     public ResponseEntity<RentingResponse> rent(@RequestBody RentingRequest rentingRequest) {
 
         if (rentingService.rent(rentingRequest) == true) {
@@ -29,4 +30,17 @@ public class RentingController {
             return new ResponseEntity<>(incorrectResponse, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping
+    @RequestMapping("/return")
+    public ResponseEntity<RentingResponse> returnEquipment(@RequestBody RentingRequest rentingRequest){
+        if(rentingService.returnItem(rentingRequest)){
+            RentingResponse correctResponse = new RentingResponse(MessageEnum.RETURN_SUCCESS);
+            return new ResponseEntity<>(correctResponse, HttpStatus.OK);
+        } else {
+            RentingResponse incorrectResponse = new RentingResponse(MessageEnum.RETURN_FAIL);
+            return new ResponseEntity<>(incorrectResponse, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
