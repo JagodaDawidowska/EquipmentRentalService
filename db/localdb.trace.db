@@ -32,3 +32,7 @@ INSERT INTO "PUBLIC"."INVENTORY"("ID","AVAIABLE_AMOUNT","ITEM_NAME","TOTAL_AMOUN
 org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"
 Data conversion error converting "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"; SQL statement:
 INSERT INTO "PUBLIC"."INVENTORY"("ID","AVAIABLE_AMOUNT","ITEM_NAME","TOTAL_AMOUNT","AVAILABLE_AMOUNT")VALUES(?,?,?,?,?) [22018-200]
+2022-08-10 11:58:55 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT * FROM RENTED_INVENTORY WHERE ID_CUSTOMER[*]=:'99'"
+Syntax error in SQL statement "SELECT * FROM RENTED_INVENTORY WHERE ID_CUSTOMER[*]=:'99'"; SQL statement:
+Select * from Rented_Inventory where id_customer=:'99' [42000-200]

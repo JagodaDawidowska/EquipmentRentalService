@@ -46,8 +46,6 @@ public class RentingService {
             return false;
         }
 
-        RentedInventory rentedInventory = new RentedInventory();
-
         //rentedInventoryRepository.deleteById(rentedInventory.getId());
         //findById(rentingRequest.getIdItem()).orElse(null);
 

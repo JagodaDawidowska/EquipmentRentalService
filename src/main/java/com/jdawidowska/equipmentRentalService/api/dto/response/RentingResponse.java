@@ -1,17 +1,17 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 public class RentingResponse {
-    private MessageEnum message;
+    private RentingEnum message;
 
-    public RentingResponse(MessageEnum message) {
+    public RentingResponse(RentingEnum message) {
         this.message = message;
     }
 
-    public MessageEnum getMessage() {
+    public RentingEnum getMessage() {
         return message;
     }
 
-    public void setMessage(MessageEnum message) {
+    public void setMessage(RentingEnum message) {
         this.message = message;
     }
 }
