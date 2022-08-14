@@ -40,6 +40,7 @@ public class RentingService {
         }
     }
 
+
     public boolean returnItem(RentingRequest rentingRequest) {
         Inventory inventory = inventoryRepository.findById(rentingRequest.getIdItem()).orElse(null);
         if (inventory == null) {
@@ -48,13 +49,12 @@ public class RentingService {
 
         //rentedInventoryRepository.deleteById(rentedInventory.getId());
         //findById(rentingRequest.getIdItem()).orElse(null);
-
         if (inventory.getAvailableAmount() < inventory.getTotalAmount()) {
             inventoryRepository.returnItem(rentingRequest.getIdItem());
-            //  rentedInventoryRepository.deleteById(rentedInventory.getId());
-
-            //to do // add rentedInventoryRepository.deleteById( Id have to be taken from inventory repository)
-            //query for take id customer and item
+            //to do // add inventoryrentedREQUEST and change it here
+            //getting defined rentedInventoryId
+            Long definedId = rentedInventoryRepository.getDefinedId(rentingRequest.getIdCustomer(), rentingRequest.getIdItem());
+            rentedInventoryRepository.deleteById(definedId);
 
             return true;
         } else return false;

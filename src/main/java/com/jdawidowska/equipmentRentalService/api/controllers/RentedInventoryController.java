@@ -21,16 +21,6 @@ public class RentedInventoryController {
         this.rentedInventoryService = rentedInventoryService;
     }
 
-    @PostMapping("/getAllRentedInventoryById")
-    public ResponseEntity<GeneralResponse> getAllRentedItemsByIDUser(@RequestBody RentingRequest rentingRequest) {
-        if (rentedInventoryService.findById(rentingRequest)) {
-            GeneralResponse correctResponse = new GeneralResponse(GeneralEnum.SUCCESS);
-            return new ResponseEntity<>(correctResponse, HttpStatus.OK);
-        } else {
-            GeneralResponse incorrectResponse = new GeneralResponse(GeneralEnum.FAIL);
-            return new ResponseEntity<>(incorrectResponse, HttpStatus.BAD_REQUEST);
-        }
-    }
 
     @GetMapping
     public List<RentedInventory> getAll(){

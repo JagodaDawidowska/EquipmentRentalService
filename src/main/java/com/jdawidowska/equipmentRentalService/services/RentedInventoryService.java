@@ -28,6 +28,6 @@ public class RentedInventoryService {
     }
 
     public List<RentedInventory> getAll(){
-        return rentedInventoryRepository.findAllByUserIdAndItemId();
+        return (List<RentedInventory>) rentedInventoryRepository.findAll();
     }
 }

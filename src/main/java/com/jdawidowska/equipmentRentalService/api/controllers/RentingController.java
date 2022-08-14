@@ -36,6 +36,7 @@ public class RentingController {
     public ResponseEntity<RentingResponse> returnEquipment(@RequestBody RentingRequest rentingRequest){
         if(rentingService.returnItem(rentingRequest)){
             RentingResponse correctResponse = new RentingResponse(RentingEnum.RETURN_SUCCESS);
+
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
         } else {
             RentingResponse incorrectResponse = new RentingResponse(RentingEnum.RETURN_FAIL);
