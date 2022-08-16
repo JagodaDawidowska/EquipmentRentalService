@@ -17,7 +17,7 @@ public class CustomersController {
         this.customersService = customersService;
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public void addCustomer(@RequestBody CustomerRequest customerRequest){
         customersService.addCustomer(customerRequest);
     }

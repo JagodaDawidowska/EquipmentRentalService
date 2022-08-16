@@ -23,7 +23,7 @@ public class InventoryController {
         this.rentingService = rentingService;
     }
 
-    @GetMapping("/showResources")
+    @GetMapping
     public Iterable<Inventory> findAll() {
         return inventoryService.findAll();
     }
