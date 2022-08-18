@@ -27,7 +27,6 @@ public class RentingService {
         if (inventory == null) {
             return false;
         }
-
         if (inventory.getAvailableAmount() > 0) {
             RentedInventory rentedInventory = new RentedInventory();
             rentedInventory.setIdCustomer(rentingRequest.getIdCustomer());
@@ -39,5 +38,25 @@ public class RentingService {
         } else {
             return false;
         }
+    }
+
+
+    public boolean returnItem(RentingRequest rentingRequest) {
+        Inventory inventory = inventoryRepository.findById(rentingRequest.getIdItem()).orElse(null);
+        if (inventory == null) {
+            return false;
+        }
+
+        //rentedInventoryRepository.deleteById(rentedInventory.getId());
+        //findById(rentingRequest.getIdItem()).orElse(null);
+        if (inventory.getAvailableAmount() < inventory.getTotalAmount()) {
+            inventoryRepository.returnItem(rentingRequest.getIdItem());
+            //to do // add inventoryrentedREQUEST and change it here
+            //getting defined rentedInventoryId
+            Long definedId = rentedInventoryRepository.getDefinedId(rentingRequest.getIdCustomer(), rentingRequest.getIdItem());
+            rentedInventoryRepository.deleteById(definedId);
+
+            return true;
+        } else return false;
     }
 }

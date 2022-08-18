@@ -32,3 +32,23 @@ INSERT INTO "PUBLIC"."INVENTORY"("ID","AVAIABLE_AMOUNT","ITEM_NAME","TOTAL_AMOUN
 org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"
 Data conversion error converting "'' (INVENTORY: ""AVAILABLE_AMOUNT"" INTEGER)"; SQL statement:
 INSERT INTO "PUBLIC"."INVENTORY"("ID","AVAIABLE_AMOUNT","ITEM_NAME","TOTAL_AMOUNT","AVAILABLE_AMOUNT")VALUES(?,?,?,?,?) [22018-200]
+2022-08-10 11:58:55 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT * FROM RENTED_INVENTORY WHERE ID_CUSTOMER[*]=:'99'"
+Syntax error in SQL statement "SELECT * FROM RENTED_INVENTORY WHERE ID_CUSTOMER[*]=:'99'"; SQL statement:
+Select * from Rented_Inventory where id_customer=:'99' [42000-200]
+2022-08-11 16:09:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "TRUE"
+Data conversion error converting "TRUE"; SQL statement:
+SELECT id FROM Rented_Inventory WHERE id_Customer = ? && id_Item = ? [22018-200]
+2022-08-11 16:10:48 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT ID FROM RENTED_INVENTORY WHERE ID_CUSTOMER = :[*]ID_CUSTOMER && ID_ITEM = :ID_ITEM"; oczekiwano "ALL, ANY, SOME"
+Syntax error in SQL statement "SELECT ID FROM RENTED_INVENTORY WHERE ID_CUSTOMER = :[*]ID_CUSTOMER && ID_ITEM = :ID_ITEM"; expected "ALL, ANY, SOME"; SQL statement:
+SELECT id FROM Rented_Inventory WHERE id_Customer = :id_Customer && id_Item = :id_Item [42001-200]
+2022-08-11 16:11:11 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELECT ID FROM RENTED_INVENTORY WHERE ID_CUSTOMER[*] =:ID_CUSTOMER && ID_ITEM = ID_ITEM"
+Syntax error in SQL statement "SELECT ID FROM RENTED_INVENTORY WHERE ID_CUSTOMER[*] =:ID_CUSTOMER && ID_ITEM = ID_ITEM"; SQL statement:
+SELECT id FROM Rented_Inventory WHERE id_Customer =:id_Customer && id_Item = id_Item [42000-200]
+2022-08-11 16:12:02 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLDataException: Błąd konwersji danych "TRUE"
+Data conversion error converting "TRUE"; SQL statement:
+SELECT id FROM Rented_Inventory WHERE id_Customer ='99' && id_Item = '1' [22018-200]
