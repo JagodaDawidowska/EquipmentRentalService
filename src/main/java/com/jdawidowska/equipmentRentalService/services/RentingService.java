@@ -3,7 +3,7 @@ package com.jdawidowska.equipmentRentalService.services;
 import com.jdawidowska.equipmentRentalService.api.dto.request.RentingRequest;
 import com.jdawidowska.equipmentRentalService.data.entities.Inventory;
 import com.jdawidowska.equipmentRentalService.data.entities.RentedInventory;
-import com.jdawidowska.equipmentRentalService.data.repos.CustomersRepository;
+import com.jdawidowska.equipmentRentalService.data.repos.UserRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.InventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.RentedInventoryRepository;
 import org.springframework.stereotype.Service;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 public class RentingService {
 
     private final InventoryRepository inventoryRepository;
-    private final CustomersRepository customersRepository;
-    public final RentedInventoryRepository rentedInventoryRepository;
+    private final UserRepository userRepository;
+    private final RentedInventoryRepository rentedInventoryRepository;
 
-    public RentingService(InventoryRepository inventoryRepository, CustomersRepository customersRepository, RentedInventoryRepository rentedInventoryRepository) {
+    public RentingService(InventoryRepository inventoryRepository, UserRepository userRepository, RentedInventoryRepository rentedInventoryRepository) {
         this.inventoryRepository = inventoryRepository;
-        this.customersRepository = customersRepository;
+        this.userRepository = userRepository;
         this.rentedInventoryRepository = rentedInventoryRepository;
     }
 
@@ -28,12 +28,13 @@ public class RentingService {
             return false;
         }
         if (inventory.getAvailableAmount() > 0) {
+            //sprawdz czy nie ma juz takiego rekordu jak jest to wywolaj metode z repo ktofra dodaje amount;
             RentedInventory rentedInventory = new RentedInventory();
-            rentedInventory.setIdCustomer(rentingRequest.getIdCustomer());
+            rentedInventory.setIdUser(rentingRequest.getIdUser());
             rentedInventory.setIdItem(rentingRequest.getIdItem());
             rentedInventory.setAmount(1);
             rentedInventoryRepository.save(rentedInventory);
-            inventoryRepository.lendItem(rentingRequest.getIdItem());
+            inventoryRepository.rentItem(rentingRequest.getIdItem());
             return true;
         } else {
             return false;
@@ -45,18 +46,14 @@ public class RentingService {
         Inventory inventory = inventoryRepository.findById(rentingRequest.getIdItem()).orElse(null);
         if (inventory == null) {
             return false;
-        }
+        }if (inventory.getAvailableAmount() < inventory.getTotalAmount()) {
 
-        //rentedInventoryRepository.deleteById(rentedInventory.getId());
-        //findById(rentingRequest.getIdItem()).orElse(null);
-        if (inventory.getAvailableAmount() < inventory.getTotalAmount()) {
             inventoryRepository.returnItem(rentingRequest.getIdItem());
-            //to do // add inventoryrentedREQUEST and change it here
-            //getting defined rentedInventoryId
-            Long definedId = rentedInventoryRepository.getDefinedId(rentingRequest.getIdCustomer(), rentingRequest.getIdItem());
-            rentedInventoryRepository.deleteById(definedId);
 
+            Long definedId = rentedInventoryRepository.getDefinedId(rentingRequest.getIdUser(), rentingRequest.getIdItem());
+            rentedInventoryRepository.deleteById(definedId);
             return true;
+
         } else return false;
     }
 }

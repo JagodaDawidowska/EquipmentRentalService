@@ -15,7 +15,7 @@ public class RentedInventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Long idCustomer;
+    Long idUser;
     Long idItem;
     Integer amount;
 
