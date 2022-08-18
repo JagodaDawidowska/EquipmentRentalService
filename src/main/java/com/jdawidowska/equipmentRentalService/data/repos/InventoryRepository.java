@@ -15,7 +15,7 @@ public interface InventoryRepository extends CrudRepository<Inventory, Long>{
             + "SET available_Amount = available_Amount - 1 "
             + "WHERE id = :id "
             + "AND available_Amount > 0")
-    public void lendItem(Long id);
+    public void rentItem(Long id);
 
     @Transactional
     @Modifying
