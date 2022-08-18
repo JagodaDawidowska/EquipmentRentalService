@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Data
 @Getter
@@ -19,6 +20,6 @@ public class UserRentHistory {
     private Long id;
     private Long idUser;
     private Long idItem;
-    private Long rentDate;
-    private Long returnDate;
+    private Date rentDate;
+    private Date returnDate;
 }
