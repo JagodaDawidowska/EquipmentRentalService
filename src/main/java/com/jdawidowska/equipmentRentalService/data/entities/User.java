@@ -1,7 +1,7 @@
 package com.jdawidowska.equipmentRentalService.data.entities;
 
+import com.jdawidowska.equipmentRentalService.model.Role;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Customer {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,5 +19,8 @@ public class Customer {
     String surname;
     String email;
     String password;
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    Role role;
 
 }

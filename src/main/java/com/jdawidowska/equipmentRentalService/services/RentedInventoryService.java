@@ -22,7 +22,7 @@ public class RentedInventoryService {
         if (rentedInventory  == null) {
             return false;
         } else {
-            rentedInventoryRepository.findById(rentingRequest.getIdCustomer());
+            rentedInventoryRepository.findById(rentingRequest.getIdUser());
             return true;
         }
     }
