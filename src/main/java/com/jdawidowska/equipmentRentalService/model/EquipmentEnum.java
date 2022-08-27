@@ -20,5 +20,5 @@ public enum EquipmentEnum {
     STEPPER,
     PILKI_GIMNASTYCZNE,
     MATA_POLIESTER_2CM,
-    MATA_POLIESTER_1CM
+    MATA_POLIESTER_1CM;
 }
