@@ -27,7 +27,7 @@ public class InventoryService {
 
     public boolean add(InventoryRequest inventoryRequest) {
       Inventory inventory = new Inventory();
-      inventory.setItemName(inventoryRequest.getItemName());
+      inventory.setItemName(inventoryRequest.getItemName().toString());
       inventory.setTotalAmount(inventoryRequest.getTotalAmount());
       inventory.setAvailableAmount(inventoryRequest.getAvailableAmount());
       inventoryRepository.save(inventory);
@@ -35,7 +35,7 @@ public class InventoryService {
     }
 
     public boolean remove(InventoryRequest inventoryRequest){
-        Inventory inventory = inventoryRepository.findById(InventoryRequest.getIdItem()).orElse(null);
+        Inventory inventory = inventoryRepository.findById(inventoryRequest.getIdItem()).orElse(null);
         if(inventory !=null) {
             inventoryRepository.deleteById(inventory.getId());
             return true;
