@@ -632,3 +632,11 @@ SELECT id FROM Rented_Inventory WHERE id_Customer =? AND id_Item =? [42122-200]
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2022-08-22 17:04:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "UPDATE RENTED_INVENTORY  WHERE[*] ID_USER =? AND ID_ITEM =?  WHERE AMOUNT > 1 SET AMOUNT = AMOUNT + 1 "; oczekiwano "., AS, SET"
+Syntax error in SQL statement "UPDATE RENTED_INVENTORY  WHERE[*] ID_USER =? AND ID_ITEM =?  WHERE AMOUNT > 1 SET AMOUNT = AMOUNT + 1 "; expected "., AS, SET"; SQL statement:
+UPDATE Rented_Inventory  WHERE id_User =? AND id_Item =?  WHERE amount > 1 SET amount = amount + 1  [42001-200]
+2022-08-22 17:06:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "UPDATE RENTED_INVENTORY  WHERE[*] ID_USER = ? AND ID_ITEM = ?  SET AMOUNT = AMOUNT + 1 "; oczekiwano "., AS, SET"
+Syntax error in SQL statement "UPDATE RENTED_INVENTORY  WHERE[*] ID_USER = ? AND ID_ITEM = ?  SET AMOUNT = AMOUNT + 1 "; expected "., AS, SET"; SQL statement:
+UPDATE Rented_Inventory  WHERE id_User = ? AND id_Item = ?  SET amount = amount + 1  [42001-200]
