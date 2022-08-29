@@ -15,8 +15,7 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @Enumerated(EnumType.STRING)
-    EquipmentEnum itemName;
+    String itemName;
     Integer totalAmount;
     Integer availableAmount;
 

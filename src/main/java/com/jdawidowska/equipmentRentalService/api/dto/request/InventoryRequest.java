@@ -12,7 +12,7 @@ public class InventoryRequest {
     private  Integer totalAmount;
     private  Integer availableAmount;
     private Long idUser;
-    private static Long idItem;
+    private Long idItem;
 
     public InventoryRequest(EquipmentEnum itemName, Integer totalAmount, Integer availableAmount, Long idUser, Long idItem) {
         this.itemName = itemName;
@@ -31,7 +31,7 @@ public class InventoryRequest {
         this.idUser = idUser;
     }
 
-    public static Long getIdItem() {
+    public Long getIdItem() {
         return idItem;
     }
 

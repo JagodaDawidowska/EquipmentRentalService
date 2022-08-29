@@ -29,4 +29,7 @@ public interface InventoryRepository extends CrudRepository<Inventory, Long>{
     + "WHERE id = :id "
     + "and available_Amount >= 0")
     public void returnItem(Long id);
+
+    /*@Query(value = "")
+    public String getName();*/
 }
