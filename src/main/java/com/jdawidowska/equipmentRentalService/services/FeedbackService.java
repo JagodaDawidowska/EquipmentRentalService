@@ -1,5 +1,6 @@
 package com.jdawidowska.equipmentRentalService.services;
 
+import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,5 +10,9 @@ public class FeedbackService {
 
     public FeedbackService(FeedbackRepository feedbackRepository) {
         this.feedbackRepository = feedbackRepository;
+    }
+
+    public Iterable<Feedback> findAll(){
+        return feedbackRepository.findAll();
     }
 }
