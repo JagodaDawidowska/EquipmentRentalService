@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/feedback")
 public class FeedbackController {
+
     private final FeedbackService feedbackService;
 
     public FeedbackController(FeedbackService feedbackService) {
@@ -23,7 +23,6 @@ public class FeedbackController {
     public Iterable<Feedback> findAll() {
         return feedbackService.findAll();
     }
-
 
     //https://www.javatpoint.com/dto-java
     @GetMapping("/getAllfeedbackDTO")

@@ -1,17 +1,18 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 public class InventoryResponse {
-    private InventoryEnum inventoryEnum;
 
-    public InventoryResponse(InventoryEnum inventoryEnum) {
-        this.inventoryEnum = inventoryEnum;
+    private InventoryResponseEnum inventoryResponseEnum;
+
+    public InventoryResponse(InventoryResponseEnum inventoryResponseEnum) {
+        this.inventoryResponseEnum = inventoryResponseEnum;
     }
 
-    public InventoryEnum getInventoryEnum() {
-        return inventoryEnum;
+    public InventoryResponseEnum getInventoryEnum() {
+        return inventoryResponseEnum;
     }
 
-    public void setInventoryEnum(InventoryEnum inventoryEnum) {
-        this.inventoryEnum = inventoryEnum;
+    public void setInventoryEnum(InventoryResponseEnum inventoryResponseEnum) {
+        this.inventoryResponseEnum = inventoryResponseEnum;
     }
 }

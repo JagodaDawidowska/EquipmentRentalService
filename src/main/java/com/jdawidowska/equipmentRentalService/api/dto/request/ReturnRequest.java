@@ -1,6 +1,7 @@
 package com.jdawidowska.equipmentRentalService.api.dto.request;
 
 public class ReturnRequest {
+
     private long idRentedInventory;
     private String feedback;
 

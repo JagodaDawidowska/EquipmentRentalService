@@ -1,6 +1,5 @@
 package com.jdawidowska.equipmentRentalService.data.entities;
 
-import com.jdawidowska.equipmentRentalService.model.EquipmentEnum;
 import lombok.*;
 import javax.persistence.*;
 
@@ -18,6 +17,4 @@ public class Inventory {
     String itemName;
     Integer totalAmount;
     Integer availableAmount;
-
-
 }

@@ -16,15 +16,15 @@ public class UserRentHistoryResponse {
         this.idUser = idUser;
     }
 
+    public UserRentHistoryResponse() {
+    }
+
     public String getItemName() {
         return itemName;
     }
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public UserRentHistoryResponse() {
     }
 
     public Long getIdUser() {

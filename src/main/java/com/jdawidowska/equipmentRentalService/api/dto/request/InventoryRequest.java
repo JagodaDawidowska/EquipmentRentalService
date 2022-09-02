@@ -1,27 +1,20 @@
 package com.jdawidowska.equipmentRentalService.api.dto.request;
 
-import com.jdawidowska.equipmentRentalService.model.EquipmentEnum;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 public class InventoryRequest {
 
-    @Enumerated(EnumType.STRING)
-    private  EquipmentEnum itemName;
-    private  Integer totalAmount;
-    private  Integer availableAmount;
+    private String itemName;
+    private Integer totalAmount;
+    private Integer availableAmount;
     private Long idUser;
     private Long idItem;
 
-    public InventoryRequest(EquipmentEnum itemName, Integer totalAmount, Integer availableAmount, Long idUser, Long idItem) {
+    public InventoryRequest(String itemName, Integer totalAmount, Integer availableAmount, Long idUser, Long idItem) {
         this.itemName = itemName;
         this.totalAmount = totalAmount;
         this.availableAmount = availableAmount;
         this.idUser = idUser;
         this.idItem = idItem;
     }
-
 
     public Long getIdUser() {
         return idUser;
@@ -39,11 +32,11 @@ public class InventoryRequest {
         this.idItem = idItem;
     }
 
-    public EquipmentEnum getItemName() {
+    public String getItemName() {
         return itemName;
     }
 
-    public void setItemName(EquipmentEnum itemName) {
+    public void setItemName(String itemName) {
         this.itemName = itemName;
     }
 

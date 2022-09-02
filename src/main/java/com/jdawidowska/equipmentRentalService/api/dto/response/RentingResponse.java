@@ -1,6 +1,7 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 public class RentingResponse {
+
     private RentingEnum message;
 
     public RentingResponse(RentingEnum message) {

@@ -10,6 +10,7 @@ import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.InventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.RentedInventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.UserRentHistoryRepository;
+import com.jdawidowska.equipmentRentalService.util.DateUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +52,7 @@ public class RentingService {
         UserRentHistory history = new UserRentHistory();
         history.setIdUser(rentingRequest.getIdUser());
         history.setIdItem(rentingRequest.getIdItem());
-        history.setRentDate(new Date(System.currentTimeMillis()));
+        history.setRentDate(DateUtil.getCurrentDate());
 
         UserRentHistory historyWithGeneratedID = userRentHistoryRepository.save(history);
 
@@ -66,29 +67,6 @@ public class RentingService {
         rentedInventoryRepository.save(rentedInventory);
 
         return true;
-        /*
-        Inventory inventory = inventoryRepository.findById(rentingRequest.getIdItem()).orElse(null);
-        if (inventory == null) {
-            return false;
-        }
-        if (inventory.getAvailableAmount() > 0) {
-            List<Long> idList = rentedInventoryRepository.getDefinedIds(rentingRequest.getIdUser(), rentingRequest.getIdItem());
-            if (!idList.isEmpty()) {
-                rentedInventoryRepository.rentedInventoryRent(rentingRequest.getIdUser(), rentingRequest.getIdItem());
-                inventoryRepository.rentItem(rentingRequest.getIdItem());
-                return true;
-            } else {
-                RentedInventory rentedInventory = new RentedInventory();
-                rentedInventory.setIdUser(rentingRequest.getIdUser());
-                rentedInventory.setIdItem(rentingRequest.getIdItem());
-                rentedInventory.setAmount(1);
-                rentedInventoryRepository.save(rentedInventory);
-                inventoryRepository.rentItem(rentingRequest.getIdItem());
-                return true;
-            }
-        } else {
-            return false;
-        }*/
     }
 
     @Transactional
@@ -102,7 +80,7 @@ public class RentingService {
         if(userRentHistory == null){
             return false;
         }
-        userRentHistoryRepository.updateReturnDate(rentedInventory.getIdHistory(), new Date(System.currentTimeMillis()));
+        userRentHistoryRepository.updateReturnDate(rentedInventory.getIdHistory(), DateUtil.getCurrentDate());
         rentedInventoryRepository.deleteById(rentedInventory.getId());
 
         if(returnRequest.getFeedback() != null && !returnRequest.getFeedback().isEmpty()){
@@ -113,34 +91,5 @@ public class RentingService {
         }
 
         return true;
-        /*
-        Inventory inventory = inventoryRepository.findById(returnRequest.getIdItem()).orElse(null);
-        if (inventory == null) {
-            return false;
-        }
-        if (inventory.getAvailableAmount() < inventory.getTotalAmount()) {
-            //return item to INVENTORY
-            inventoryRepository.returnItem(returnRequest.getIdItem());
-            //return item in RENTED_INVENTORY
-            rentedInventoryRepository.returnInventoryReturn(returnRequest.getIdUser(), returnRequest.getIdItem());
-            RentedInventory rentedInventory = rentedInventoryRepository.findByIdUserAndIdItem(returnRequest.getIdUser(), returnRequest.getIdItem()).orElse(null);
-            //add return in
-            if (rentedInventory.getAmount() == 0) {
-                //delete record in RENTED_INVENTORY
-                Long definedId = rentedInventoryRepository.getDefinedId(returnRequest.getIdUser(), returnRequest.getIdItem());
-                rentedInventoryRepository.deleteById(definedId);
-            }
-            if(returnRequest.getFeedback() != null && !returnRequest.getFeedback().isEmpty()){
-                //add record in FEEDBACK
-                Feedback feedback = new Feedback();
-                feedback.setIdUser(returnRequest.getIdUser());
-                feedback.setContent(returnRequest.getFeedback());
-                feedbackRepository.save(feedback);
-            }
-            Date dateReturn = new Date(System.currentTimeMillis());
-            return true;
-        } else return false;
-
-         */
     }
 }

@@ -22,5 +22,4 @@ public class User {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     Role role;
-
 }

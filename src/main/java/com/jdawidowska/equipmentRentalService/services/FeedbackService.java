@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
+
     private final FeedbackRepository feedbackRepository;
 
     public FeedbackService(FeedbackRepository feedbackRepository) {
@@ -17,14 +18,7 @@ public class FeedbackService {
     }
 
     public Iterable<Feedback> findAll(){
-
         return feedbackRepository.findAll();
-    }
-
-    private static List<Feedback> convertDtoToEntity(List<FeedbackResponse> feedbackResponses) {
-        return feedbackResponses.stream()
-                .map(feedbackResponse -> new Feedback(feedbackResponse.getIdUser(), feedbackResponse.getContent()))
-                .collect(Collectors.toList());
     }
 
     public List<FeedbackResponse> getAllUsersFeedbackResponse() {
@@ -46,5 +40,4 @@ public class FeedbackService {
 
         return feedbackResponse;
     }
-
 }

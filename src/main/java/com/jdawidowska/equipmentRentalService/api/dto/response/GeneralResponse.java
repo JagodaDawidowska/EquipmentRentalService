@@ -1,6 +1,7 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 public class GeneralResponse {
+
     private GeneralEnum message;
 
     public GeneralResponse(GeneralEnum message) {
