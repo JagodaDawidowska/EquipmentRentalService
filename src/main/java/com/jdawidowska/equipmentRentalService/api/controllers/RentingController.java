@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/renting")
+@RequestMapping("/api/renting")
 public class RentingController {
 
     private final RentingService rentingService;
@@ -23,8 +23,7 @@ public class RentingController {
 
     @PostMapping
     @RequestMapping("/rent")
-    public ResponseEntity<RentingResponse> rent(@RequestBody RentingRequest rentingRequest) {
-
+    public ResponseEntity<RentingResponse> rentEquipment(@RequestBody RentingRequest rentingRequest) {
         if (rentingService.rent(rentingRequest) == true) {
             RentingResponse correctResponse = new RentingResponse(RentingEnum.RENT_SUCCESS);
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
@@ -34,26 +33,11 @@ public class RentingController {
         }
     }
 
-//    @PostMapping
-//    @RequestMapping("/return")
-//    public ResponseEntity<GeneralResponse> returnEquipment(@RequestBody RentingRequest rentingRequest){
-//        if(rentingService.returnItem(rentingRequest)){
-//            GeneralResponse correctResponse = new GeneralResponse(GeneralEnum.SUCCESS);
-//
-//            return new ResponseEntity<>(correctResponse, HttpStatus.OK);
-//        } else {
-//            GeneralResponse incorrectResponse = new GeneralResponse(GeneralEnum.FAIL);
-//            return new ResponseEntity<>(incorrectResponse, HttpStatus.BAD_REQUEST);
-//        }
-//    }
-
-
     @PostMapping
     @RequestMapping("/return")
     public ResponseEntity<GeneralResponse> returnEquipment(@RequestBody ReturnRequest returnRequest){
-        if(rentingService.returnItem(returnRequest)){
+        if(rentingService.returnItem(returnRequest) == true){
             GeneralResponse correctResponse = new GeneralResponse(GeneralEnum.SUCCESS);
-
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
         } else {
             GeneralResponse incorrectResponse = new GeneralResponse(GeneralEnum.FAIL);

@@ -19,4 +19,9 @@ public class Feedback {
     private Long id;
     private Long idUser;
     private String content;
+
+    public Feedback(Long idUser, String content) {
+        this.idUser = idUser;
+        this.content = content;
+    }
 }

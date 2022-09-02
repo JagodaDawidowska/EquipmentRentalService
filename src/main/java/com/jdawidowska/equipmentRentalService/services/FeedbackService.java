@@ -1,8 +1,12 @@
 package com.jdawidowska.equipmentRentalService.services;
 
+import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse;
 import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
@@ -13,6 +17,34 @@ public class FeedbackService {
     }
 
     public Iterable<Feedback> findAll(){
+
         return feedbackRepository.findAll();
     }
+
+    private static List<Feedback> convertDtoToEntity(List<FeedbackResponse> feedbackResponses) {
+        return feedbackResponses.stream()
+                .map(feedbackResponse -> new Feedback(feedbackResponse.getIdUser(), feedbackResponse.getContent()))
+                .collect(Collectors.toList());
+    }
+
+    public List<FeedbackResponse> getAllUsersFeedbackResponse() {
+        return ((List<Feedback>) feedbackRepository
+                .findAll())
+                .stream()
+                .map(this::convertDataIntoDTO)
+                .collect(Collectors.toList());
+    }
+
+    private FeedbackResponse convertDataIntoDTO (Feedback feedback) {
+
+        // create instance of our UserLocationDTO class
+        FeedbackResponse feedbackResponse = new   FeedbackResponse();
+
+        //set username and userId in dto from the userData
+        feedbackResponse.setIdUser(feedback.getIdUser());
+        feedbackResponse.setContent(feedback.getContent());
+
+        return feedbackResponse;
+    }
+
 }
