@@ -17,10 +17,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/add")
-    public void addCustomer(@RequestBody UserRequest userRequest){
+    @PostMapping("/register")
+    public void register(@RequestBody UserRequest userRequest){
         userService.addCustomer(userRequest);
     }
-
-
 }
