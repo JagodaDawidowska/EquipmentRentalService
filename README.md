@@ -21,9 +21,9 @@ The project contains backend in SpringBoot framework.
 
 ## Features
 List the ready features here:
-- Entities ready to develop 
-- a few controllers 
-- logic to rent and return the equipment
+- functioning renting & returning of equipment
+- working feedback, rent history 
+- some admin functions like managing the company's inventory of equipment
 
 
 ## Project Status
