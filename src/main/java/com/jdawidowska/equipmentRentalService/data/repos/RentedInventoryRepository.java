@@ -14,30 +14,6 @@ import java.util.Optional;
 @Repository
 public interface RentedInventoryRepository extends CrudRepository<RentedInventory, Long> {
 
-    @Query(value = "SELECT id FROM Rented_Inventory WHERE id_User =:idUser AND id_Item =:idItem", nativeQuery = true)
-    public Long getDefinedId(Long idUser, Long idItem);
-
-    @Query(value = "SELECT id FROM Rented_Inventory WHERE id_User =:idUser AND id_Item =:idItem", nativeQuery = true)
-    public List<Long> getDefinedIds(Long idUser, Long idItem);
-
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE Rented_Inventory "
-            + " SET amount = amount + 1 "
-            + "WHERE id_User = :idUser AND id_Item = :idItem ", nativeQuery = true)
-    public void rentedInventoryRent(Long idUser, Long idItem);
-
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE Rented_Inventory  " +
-            "SET amount = amount -1 " +
-            " WHERE id_User =:idUser AND id_Item =:idItem ", nativeQuery = true)
-    public void returnInventoryReturn(Long idUser, Long idItem);
-
-    Optional<RentedInventory> findByIdUserAndIdItem(Long idUser, Long idItem);
-
-    public List<RentedInventory> findByIdUser(Long idUser);
-
     @Transactional
     @Modifying
     @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse(R.id, I.itemName, R.amount) " +
@@ -45,5 +21,5 @@ public interface RentedInventoryRepository extends CrudRepository<RentedInventor
             "JOIN Inventory AS I " +
             "ON R.idItem = I.id " +
             "WHERE R.idUser = :idUser ")
-    public List<UserRentedResponse> findUserRentedEquipment(Long idUser);
+    public List<UserRentedResponse> findEquipmentRentedByUser(Long idUser);
 }

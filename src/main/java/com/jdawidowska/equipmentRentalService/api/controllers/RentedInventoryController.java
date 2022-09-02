@@ -17,14 +17,13 @@ public class RentedInventoryController {
         this.rentedInventoryService = rentedInventoryService;
     }
 
-
     @GetMapping()
-    public List<RentedInventory> getAll(){
-        return rentedInventoryService.getAll();
+    public List<RentedInventory> findAll(){
+        return rentedInventoryService.findAll();
     }
 
-    @GetMapping("/user/{IdUser}")
-    public List<UserRentedResponse> findUserRentedEquipment(@PathVariable("IdUser") Long idUser){
-        return rentedInventoryService.findUserRentedEquipment(idUser);
+    @GetMapping("/user/{idUser}")
+    public List<UserRentedResponse> findEquipmentRentedByUser(@PathVariable("idUser") Long idUser){
+        return rentedInventoryService.findEquipmentRentedByUser(idUser);
     }
 }

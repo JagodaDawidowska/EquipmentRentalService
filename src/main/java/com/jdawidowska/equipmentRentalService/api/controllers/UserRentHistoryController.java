@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/history")
@@ -20,13 +19,13 @@ public class UserRentHistoryController {
         this.userRentHistoryService = userRentHistoryService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public Iterable<UserRentHistory> findAll(){
         return userRentHistoryService.findAll();
     }
 
-    @GetMapping("/user/{IdUser}")
-    public List<UserRentHistoryResponse> findById(@PathVariable("IdUser") Long idUser){
-        return userRentHistoryService.findByUserId(idUser);
+    @GetMapping("/user/{idUser}")
+    public List<UserRentHistoryResponse> findUserHistory(@PathVariable("idUser") Long idUser){
+        return userRentHistoryService.findUserHistory(idUser);
     }
 }

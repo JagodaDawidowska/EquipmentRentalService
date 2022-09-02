@@ -15,6 +15,7 @@ import java.sql.Date;
 @RequiredArgsConstructor
 @Entity
 public class UserRentHistory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

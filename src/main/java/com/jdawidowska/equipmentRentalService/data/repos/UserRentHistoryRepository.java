@@ -1,7 +1,6 @@
 package com.jdawidowska.equipmentRentalService.data.repos;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse;
 import com.jdawidowska.equipmentRentalService.data.entities.UserRentHistory;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface UserRentHistoryRepository extends CrudRepository<UserRentHistory, Long> {
@@ -22,9 +20,6 @@ public interface UserRentHistoryRepository extends CrudRepository<UserRentHistor
             "WHERE id = :idHistory")
     public void updateReturnDate(Long idHistory, Date returnDate);
 
-    public List<UserRentHistory> findByIdUser(Long idUser);
-
-
     @Transactional
     @Modifying
     @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse(UR.idUser, I.itemName, UR.rentDate ,UR.returnDate) " +
@@ -32,5 +27,5 @@ public interface UserRentHistoryRepository extends CrudRepository<UserRentHistor
             "JOIN Inventory AS I " +
             "ON UR.idItem = I.id " +
             "WHERE UR.idUser = :idUser ")
-    public List<UserRentHistoryResponse> findUserRentedHistoryById(Long idUser);
+    public List<UserRentHistoryResponse> findHistoryForUser(Long idUser);
 }

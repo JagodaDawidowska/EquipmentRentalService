@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
-public enum InventoryEnum {
+public enum InventoryResponseEnum {
     EQUIPMENT_ADDED,
     EQUIPMENT_REMOVED,
     FAIL

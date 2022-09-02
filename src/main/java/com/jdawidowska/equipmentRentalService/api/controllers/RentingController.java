@@ -2,8 +2,6 @@ package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.request.RentingRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.request.ReturnRequest;
-import com.jdawidowska.equipmentRentalService.api.dto.response.GeneralEnum;
-import com.jdawidowska.equipmentRentalService.api.dto.response.GeneralResponse;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RentingEnum;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RentingResponse;
 import com.jdawidowska.equipmentRentalService.services.RentingService;
@@ -35,12 +33,12 @@ public class RentingController {
 
     @PostMapping
     @RequestMapping("/return")
-    public ResponseEntity<GeneralResponse> returnEquipment(@RequestBody ReturnRequest returnRequest){
+    public ResponseEntity<RentingResponse> returnEquipment(@RequestBody ReturnRequest returnRequest){
         if(rentingService.returnItem(returnRequest) == true){
-            GeneralResponse correctResponse = new GeneralResponse(GeneralEnum.SUCCESS);
+            RentingResponse correctResponse = new RentingResponse(RentingEnum.RETURN_SUCCESS);
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
         } else {
-            GeneralResponse incorrectResponse = new GeneralResponse(GeneralEnum.FAIL);
+            RentingResponse incorrectResponse = new RentingResponse(RentingEnum.RETURN_FAIL);
             return new ResponseEntity<>(incorrectResponse, HttpStatus.BAD_REQUEST);
         }
     }

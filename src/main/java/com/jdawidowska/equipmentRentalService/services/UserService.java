@@ -14,16 +14,13 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void addCustomer(UserRequest userRequest){
-
+    public void addUser(UserRequest userRequest){
         User user = new User();
         user.setName(userRequest.getName());
         user.setSurname(userRequest.getSurname());
         user.setEmail(userRequest.getEmail());
         user.setPassword(userRequest.getPassword());
         user.setRole(userRequest.getRole());
-        User usr = userRepository.save(user);
-
-        System.out.println(1);
+        userRepository.save(user);
     }
 }

@@ -5,5 +5,4 @@ public enum RentingEnum {
     RENT_FAIL,
     RETURN_SUCCESS,
     RETURN_FAIL,
-
 }

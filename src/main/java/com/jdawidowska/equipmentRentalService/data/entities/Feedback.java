@@ -14,6 +14,7 @@ import javax.persistence.Id;
 @Setter
 @ToString
 public class Feedback {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

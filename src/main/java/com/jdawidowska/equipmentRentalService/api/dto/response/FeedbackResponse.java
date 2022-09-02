@@ -1,6 +1,7 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 public class FeedbackResponse {
+
     private Long idUser;
     private String content;
 

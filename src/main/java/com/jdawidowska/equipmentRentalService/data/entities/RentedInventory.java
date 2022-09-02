@@ -19,5 +19,4 @@ public class RentedInventory {
     Long idUser;
     Long idItem;
     Integer amount;
-
 }
