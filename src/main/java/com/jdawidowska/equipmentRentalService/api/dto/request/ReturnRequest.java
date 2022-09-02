@@ -1,30 +1,20 @@
 package com.jdawidowska.equipmentRentalService.api.dto.request;
 
 public class ReturnRequest {
-    private long idUser;
-    private long idItem;
+    private long idRentedInventory;
     private String feedback;
 
-    public ReturnRequest(long idUser, long idItem, String feedback) {
-        this.idUser = idUser;
-        this.idItem = idItem;
+    public ReturnRequest(long idRentedInventory, String feedback) {
+        this.idRentedInventory = idRentedInventory;
         this.feedback = feedback;
     }
 
-    public long getIdUser() {
-        return idUser;
+    public long getIdRentedInventory() {
+        return idRentedInventory;
     }
 
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
-    }
-
-    public long getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(long idItem) {
-        this.idItem = idItem;
+    public void setIdRentedInventory(long idRentedInventory) {
+        this.idRentedInventory = idRentedInventory;
     }
 
     public String getFeedback() {
