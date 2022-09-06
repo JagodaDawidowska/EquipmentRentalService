@@ -14,13 +14,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void addUser(UserRequest userRequest){
+    public boolean addUser(UserRequest userRequest){
         User user = new User();
         user.setName(userRequest.getName());
         user.setSurname(userRequest.getSurname());
         user.setEmail(userRequest.getEmail());
         user.setPassword(userRequest.getPassword());
         user.setRole(userRequest.getRole());
-        userRepository.save(user);
+
+        if(!userRepository.existsByEmail(userRequest.getEmail())){
+            userRepository.save(user);
+            return true;
+        } else return false;
     }
 }
