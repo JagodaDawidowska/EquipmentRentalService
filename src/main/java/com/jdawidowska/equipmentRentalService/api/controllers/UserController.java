@@ -1,7 +1,11 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.request.UserRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterEnum;
+import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterResponse;
 import com.jdawidowska.equipmentRentalService.services.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +22,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody UserRequest userRequest){
-        userService.addUser(userRequest);
+    public ResponseEntity<RegisterResponse> register(@RequestBody UserRequest userRequest){
+        if( userService.addUser(userRequest)){
+            RegisterResponse correctResponse = new RegisterResponse(RegisterEnum.USER_REGISTED);
+            return new ResponseEntity<>(correctResponse,HttpStatus.OK );
+        }else {
+            RegisterResponse errorResponse = new RegisterResponse(RegisterEnum.EMAIL_ALREADY_EXISTS);
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        }
     }
 }
