@@ -34,9 +34,9 @@ public class InventoryController {
         }
     }
 
-    @PostMapping("/remove")
-    public ResponseEntity<InventoryResponse> remove(@RequestBody InventoryRequest inventoryRequest) {
-        if (inventoryService.remove(inventoryRequest)) {
+    @PostMapping("/remove/{idItem}")
+    public ResponseEntity<InventoryResponse> remove(@PathVariable Long idItem) {
+        if (inventoryService.remove(idItem)) {
             InventoryResponse correctResponse = new InventoryResponse(InventoryResponseEnum.EQUIPMENT_REMOVED);
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
         } else {
