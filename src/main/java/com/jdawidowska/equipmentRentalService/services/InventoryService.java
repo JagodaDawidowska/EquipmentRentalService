@@ -29,7 +29,7 @@ public class InventoryService {
 
     public boolean remove(InventoryRequest inventoryRequest){
         Inventory inventory = inventoryRepository.findById(inventoryRequest.getIdItem()).orElse(null);
-        if(inventory != null) {
+        if(inventory != null && inventory.getAvailableAmount() == inventory.getTotalAmount()) {
             inventoryRepository.deleteById(inventory.getId());
             return true;
         } else return false;
