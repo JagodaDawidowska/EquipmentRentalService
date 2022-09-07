@@ -27,9 +27,9 @@ public class InventoryService {
       return true;
     }
 
-    public boolean remove(InventoryRequest inventoryRequest){
-        Inventory inventory = inventoryRepository.findById(inventoryRequest.getIdItem()).orElse(null);
-        if(inventory != null) {
+    public boolean remove(Long idItem){
+        Inventory inventory = inventoryRepository.findById(idItem).orElse(null);
+        if(inventory != null && inventory.getAvailableAmount() == inventory.getTotalAmount()) {
             inventoryRepository.deleteById(inventory.getId());
             return true;
         } else return false;
