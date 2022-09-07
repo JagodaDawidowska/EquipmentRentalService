@@ -3,13 +3,12 @@ package com.jdawidowska.equipmentRentalService.api.controllers;
 import com.jdawidowska.equipmentRentalService.api.dto.request.UserRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterEnum;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterResponse;
+import com.jdawidowska.equipmentRentalService.api.dto.response.UserResponse;
 import com.jdawidowska.equipmentRentalService.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController()
 @RequestMapping("/api/users")
@@ -30,5 +29,10 @@ public class UserController {
             RegisterResponse errorResponse = new RegisterResponse(RegisterEnum.EMAIL_ALREADY_EXISTS);
             return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping()
+    public List<UserResponse> findAllUserReponse(){
+        return userService.findAllUserReponse();
     }
 }
