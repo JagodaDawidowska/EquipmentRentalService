@@ -39,7 +39,7 @@ public class UserService {
         return userResponse;
     }
 
-    public List<UserResponse> findAllUserReponse(){
+    public List<UserResponse> findAllUserResponse(){
         return ((List<User>) userRepository.findAll())
                 .stream()
                 .map(this::convertDataIntoDTO)

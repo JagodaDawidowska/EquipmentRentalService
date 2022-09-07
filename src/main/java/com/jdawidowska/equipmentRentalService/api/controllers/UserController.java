@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping()
-    public List<UserResponse> findAllUserReponse(){
-        return userService.findAllUserReponse();
+    public List<UserResponse> findAllUserResponse(){
+        return userService.findAllUserResponse();
     }
 }
