@@ -1,5 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
+import com.jdawidowska.equipmentRentalService.api.dto.response.RentedInventoryResponse;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse;
 import com.jdawidowska.equipmentRentalService.data.entities.RentedInventory;
 import com.jdawidowska.equipmentRentalService.services.RentedInventoryService;
@@ -25,5 +26,10 @@ public class RentedInventoryController {
     @GetMapping("/user/{idUser}")
     public List<UserRentedResponse> findEquipmentRentedByUser(@PathVariable("idUser") Long idUser){
         return rentedInventoryService.findEquipmentRentedByUser(idUser);
+    }
+
+    @GetMapping("/rentedInventoryResponse")
+    public List<RentedInventoryResponse> findRentedInventoryDTO(){
+        return rentedInventoryService.findRentedInventoryDTO();
     }
 }

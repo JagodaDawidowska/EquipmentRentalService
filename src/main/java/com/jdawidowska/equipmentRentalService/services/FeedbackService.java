@@ -1,6 +1,7 @@
 package com.jdawidowska.equipmentRentalService.services;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse;
+import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponseDTO;
 import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class FeedbackService {
                 .stream()
                 .map(this::convertDataIntoDTO)
                 .collect(Collectors.toList());
+    }
+
+    //For Admin FeedbackActivity
+    public List<FeedbackResponseDTO>  findFeedbackResponseDTO(){
+        return  feedbackRepository.findFeedbackResponseDTO();
     }
 
     private FeedbackResponse convertDataIntoDTO (Feedback feedback) {

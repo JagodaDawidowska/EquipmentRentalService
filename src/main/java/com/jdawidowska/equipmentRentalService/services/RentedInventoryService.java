@@ -1,5 +1,6 @@
 package com.jdawidowska.equipmentRentalService.services;
 
+import com.jdawidowska.equipmentRentalService.api.dto.response.RentedInventoryResponse;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse;
 import com.jdawidowska.equipmentRentalService.data.entities.RentedInventory;
 import com.jdawidowska.equipmentRentalService.data.repos.RentedInventoryRepository;
@@ -22,5 +23,9 @@ public class RentedInventoryService {
 
     public List<UserRentedResponse> findEquipmentRentedByUser(Long idUser){
        return rentedInventoryRepository.findEquipmentRentedByUser(idUser);
+    }
+
+    public List<RentedInventoryResponse> findRentedInventoryDTO(){
+        return rentedInventoryRepository.findRentedInventoryDTO();
     }
 }

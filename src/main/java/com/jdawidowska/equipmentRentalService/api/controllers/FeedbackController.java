@@ -1,6 +1,7 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse;
+import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponseDTO;
 import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.services.FeedbackService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,4 +35,9 @@ public class FeedbackController {
         return feedbackResponses;
     }
 
+    //For Admin FeedbackActivity
+    @GetMapping("/findFeedbackResponseDTO")
+    public List<FeedbackResponseDTO>  findFeedbackResponseDTO(){
+        return  feedbackService.findFeedbackResponseDTO();
+    }
 }
