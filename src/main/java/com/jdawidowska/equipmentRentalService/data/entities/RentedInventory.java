@@ -19,4 +19,9 @@ public class RentedInventory {
     Long idUser;
     Long idItem;
     Integer amount;
+
+    public RentedInventory(Long idUser, Long idItem) {
+        this.idUser = idUser;
+        this.idItem = idItem;
+    }
 }

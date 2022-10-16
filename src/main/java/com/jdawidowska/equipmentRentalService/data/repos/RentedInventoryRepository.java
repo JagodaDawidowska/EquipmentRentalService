@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface RentedInventoryRepository extends CrudRepository<RentedInventory, Long> {
@@ -35,7 +34,48 @@ public interface RentedInventoryRepository extends CrudRepository<RentedInventor
                     "ON R.idItem = I.id")
     public List<RentedInventoryResponse> findRentedInventoryDTO();
 
-    /*
+//    @Transactional
+//    @Modifying
+//    @Query(value = "UPDATE RentedInventory "
+//            + "SET amount = amount + 1 "
+//            + "WHERE idItem = :idItem AND idUser = :IdUser")
+//    public Integer doIncrementAmountWhereSameIdItemForIdUser(Long idItem,Long IdUser);
+//
+//    @Transactional
+//    @Modifying
+//    @Query(value = "select amount from RentedInventory where idUser = :idUser")
+//    public Integer getAmountByIdUser(Long idUser);
+//
+//    @Transactional
+//    @Modifying
+//    @Query(value = "select idItem from RentedInventory where idUser = :idUser")
+//    public Integer getIdItemByIdUser(Long idUser);
+
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE RentedInventory "
+            + "SET amount = amount + 1 "
+            + "WHERE id = :id "
+            + "and amount >= 0")
+    public void doIncrementAmount(Long id);
+
+    @Query
+    public boolean existsByIdUserAndIdItem(Long idUser, Long idItem);
+
+    @Transactional
+    @Query(value = "SELECT id FROM RentedInventory where idUser =:idUser  and idItem=:idItem")
+    public Long getIdRentedInventoryByIdUserAndIdItem(Long idUser,Long idItem);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update  RentedInventory set amount =amount-1  where id =:idRentedInventory ")
+    public void doDecreaseAmount(Long idRentedInventory);
+
+
+
+
+    /*ByIdUserAndIdItem()
     SELECT RENTED_INVENTORY.amount, USER.name, USER.surname, INVENTORY.item_name FROM RENTED_INVENTORY INNER JOIN USER ON RENTED_INVENTORY.ID_USER = USER.ID INNER JOIN INVENTORY ON RENTED_INVENTORY.ID_ITEM = INVENTORY.ID
      */
     /*
