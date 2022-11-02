@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.UserRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.AddUserRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserResponse;
 import com.jdawidowska.equipmentRentalService.data.entities.User;
 import com.jdawidowska.equipmentRentalService.data.repos.UserRepository;
@@ -17,15 +17,15 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public boolean addUser(UserRequest userRequest){
+    public boolean addUser(AddUserRequest addUserRequest){
         User user = new User();
-        user.setName(userRequest.getName());
-        user.setSurname(userRequest.getSurname());
-        user.setEmail(userRequest.getEmail());
-        user.setPassword(userRequest.getPassword());
-        user.setRole(userRequest.getRole());
+        user.setName(addUserRequest.getName());
+        user.setSurname(addUserRequest.getSurname());
+        user.setEmail(addUserRequest.getEmail());
+        user.setPassword(addUserRequest.getPassword());
+        user.setRole(addUserRequest.getRole());
 
-        if(!userRepository.existsByEmail(userRequest.getEmail())){
+        if(!userRepository.existsByEmail(addUserRequest.getEmail())){
             userRepository.save(user);
             return true;
         } else return false;

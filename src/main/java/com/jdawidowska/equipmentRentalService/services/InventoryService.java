@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.InventoryRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.AddInventoryRequest;
 import com.jdawidowska.equipmentRentalService.data.entities.Inventory;
 import com.jdawidowska.equipmentRentalService.data.repos.InventoryRepository;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
-    public boolean add(InventoryRequest inventoryRequest) {
+    public boolean add(AddInventoryRequest addInventoryRequest) {
       Inventory inventory = new Inventory();
-      inventory.setItemName(inventoryRequest.getItemName());
-      inventory.setTotalAmount(inventoryRequest.getTotalAmount());
-      inventory.setAvailableAmount(inventoryRequest.getAvailableAmount());
+      inventory.setItemName(addInventoryRequest.getItemName());
+      inventory.setTotalAmount(addInventoryRequest.getTotalAmount());
+      inventory.setAvailableAmount(addInventoryRequest.getAvailableAmount());
       inventoryRepository.save(inventory);
       return true;
     }

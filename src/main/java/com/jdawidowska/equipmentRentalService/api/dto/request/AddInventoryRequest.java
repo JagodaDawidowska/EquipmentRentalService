@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.dto.request;
 
-public class InventoryRequest {
+public class AddInventoryRequest {
 
     private String itemName;
     private Integer totalAmount;
@@ -8,7 +8,7 @@ public class InventoryRequest {
     private Long idUser;
     private Long idItem;
 
-    public InventoryRequest(String itemName, Integer totalAmount, Integer availableAmount, Long idUser, Long idItem) {
+    public AddInventoryRequest(String itemName, Integer totalAmount, Integer availableAmount, Long idUser, Long idItem) {
         this.itemName = itemName;
         this.totalAmount = totalAmount;
         this.availableAmount = availableAmount;
@@ -59,9 +59,11 @@ public class InventoryRequest {
     @Override
     public String toString() {
         return "InventoryRequest{" +
-                "itemName=" + itemName +
+                "itemName='" + itemName + '\'' +
                 ", totalAmount=" + totalAmount +
                 ", availableAmount=" + availableAmount +
+                ", idUser=" + idUser +
+                ", idItem=" + idItem +
                 '}';
     }
 }

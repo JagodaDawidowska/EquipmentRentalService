@@ -1,7 +1,7 @@
 package com.jdawidowska.equipmentRentalService.services;
 
+import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponseUnused;
 import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponseDTO;
 import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,17 @@ public class FeedbackService {
         this.feedbackRepository = feedbackRepository;
     }
 
+    //For Admin FeedbackActivity
+    public List<FeedbackResponse> findAllFeedback(){
+        return feedbackRepository.findAllFeedback();
+    }
+
+    /*
     public Iterable<Feedback> findAll(){
         return feedbackRepository.findAll();
     }
 
-    public List<FeedbackResponse> getAllUsersFeedbackResponse() {
+    public List<FeedbackResponseUnused> getAllUsersFeedbackResponse() {
         return ((List<Feedback>) feedbackRepository
                 .findAll())
                 .stream()
@@ -30,20 +36,16 @@ public class FeedbackService {
                 .collect(Collectors.toList());
     }
 
-    //For Admin FeedbackActivity
-    public List<FeedbackResponseDTO>  findFeedbackResponseDTO(){
-        return  feedbackRepository.findFeedbackResponseDTO();
-    }
-
-    private FeedbackResponse convertDataIntoDTO (Feedback feedback) {
+    private FeedbackResponseUnused convertDataIntoDTO (Feedback feedback) {
 
         // create instance of our UserLocationDTO class
-        FeedbackResponse feedbackResponse = new   FeedbackResponse();
+        FeedbackResponseUnused feedbackResponseUnused = new FeedbackResponseUnused();
 
         //set username and userId in dto from the userData
-        feedbackResponse.setIdUser(feedback.getIdUser());
-        feedbackResponse.setContent(feedback.getContent());
+        feedbackResponseUnused.setIdUser(feedback.getIdUser());
+        feedbackResponseUnused.setContent(feedback.getContent());
 
-        return feedbackResponse;
+        return feedbackResponseUnused;
     }
+    */
 }

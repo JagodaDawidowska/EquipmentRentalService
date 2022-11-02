@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.InventoryRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.AddInventoryRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.*;
 import com.jdawidowska.equipmentRentalService.data.entities.Inventory;
 import com.jdawidowska.equipmentRentalService.services.InventoryService;
@@ -24,8 +24,8 @@ public class InventoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<InventoryResponse> add(@RequestBody InventoryRequest inventoryRequest) {
-        if (inventoryService.add(inventoryRequest)) {
+    public ResponseEntity<InventoryResponse> add(@RequestBody AddInventoryRequest addInventoryRequest) {
+        if (inventoryService.add(addInventoryRequest)) {
             InventoryResponse correctResponse = new InventoryResponse(InventoryResponseEnum.EQUIPMENT_ADDED);
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
         } else {

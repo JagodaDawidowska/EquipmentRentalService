@@ -1,7 +1,7 @@
 package com.jdawidowska.equipmentRentalService.data.repos;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.RentedInventoryResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse;
+import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedItemResponse;
 import com.jdawidowska.equipmentRentalService.data.entities.RentedInventory;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,12 +16,12 @@ public interface RentedInventoryRepository extends CrudRepository<RentedInventor
 
     @Transactional
     @Modifying
-    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse(R.id, I.itemName, R.amount) " +
+    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedItemResponse(R.id, I.itemName, R.amount) " +
             "FROM RentedInventory AS R " +
             "JOIN Inventory AS I " +
             "ON R.idItem = I.id " +
             "WHERE R.idUser = :idUser ")
-    public List<UserRentedResponse> findEquipmentRentedByUser(Long idUser);
+    public List<UserRentedItemResponse> findEquipmentRentedByUser(Long idUser);
 
     @Transactional
     @Modifying
@@ -32,25 +32,7 @@ public interface RentedInventoryRepository extends CrudRepository<RentedInventor
                     "ON R.idUser = U.id " +
                     "JOIN Inventory AS I " +
                     "ON R.idItem = I.id")
-    public List<RentedInventoryResponse> findRentedInventoryDTO();
-
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE RentedInventory "
-//            + "SET amount = amount + 1 "
-//            + "WHERE idItem = :idItem AND idUser = :IdUser")
-//    public Integer doIncrementAmountWhereSameIdItemForIdUser(Long idItem,Long IdUser);
-//
-//    @Transactional
-//    @Modifying
-//    @Query(value = "select amount from RentedInventory where idUser = :idUser")
-//    public Integer getAmountByIdUser(Long idUser);
-//
-//    @Transactional
-//    @Modifying
-//    @Query(value = "select idItem from RentedInventory where idUser = :idUser")
-//    public Integer getIdItemByIdUser(Long idUser);
-
+    List<RentedInventoryResponse> findAllRentedInventory();
 
     @Transactional
     @Modifying
@@ -73,7 +55,22 @@ public interface RentedInventoryRepository extends CrudRepository<RentedInventor
     public void doDecreaseAmount(Long idRentedInventory);
 
 
-
+//    @Transactional
+//    @Modifying
+//    @Query(value = "UPDATE RentedInventory "
+//            + "SET amount = amount + 1 "
+//            + "WHERE idItem = :idItem AND idUser = :IdUser")
+//    public Integer doIncrementAmountWhereSameIdItemForIdUser(Long idItem,Long IdUser);
+//
+//    @Transactional
+//    @Modifying
+//    @Query(value = "select amount from RentedInventory where idUser = :idUser")
+//    public Integer getAmountByIdUser(Long idUser);
+//
+//    @Transactional
+//    @Modifying
+//    @Query(value = "select idItem from RentedInventory where idUser = :idUser")
+//    public Integer getIdItemByIdUser(Long idUser);
 
     /*ByIdUserAndIdItem()
     SELECT RENTED_INVENTORY.amount, USER.name, USER.surname, INVENTORY.item_name FROM RENTED_INVENTORY INNER JOIN USER ON RENTED_INVENTORY.ID_USER = USER.ID INNER JOIN INVENTORY ON RENTED_INVENTORY.ID_ITEM = INVENTORY.ID

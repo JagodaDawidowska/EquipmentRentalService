@@ -1,7 +1,7 @@
 package com.jdawidowska.equipmentRentalService.services;
 
+import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseUnused;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseDTO;
 import com.jdawidowska.equipmentRentalService.data.entities.UserRentHistory;
 import com.jdawidowska.equipmentRentalService.data.repos.UserRentHistoryRepository;
 import org.springframework.stereotype.Service;
@@ -17,15 +17,15 @@ public class UserRentHistoryService {
         this.userRentHistoryRepository = userRentHistoryRepository;
     }
 
-    public Iterable<UserRentHistory> findAll(){
+    /*public Iterable<UserRentHistory> findAll(){
         return userRentHistoryRepository.findAll();
     }
 
-    public List<UserRentHistoryResponse> findUserHistory(Long id){
+    public List<UserRentHistoryResponseUnused> findUserHistory(Long id){
         return userRentHistoryRepository.findHistoryForUser(id);
-    }
+    }*/
 
-    public List<UserRentHistoryResponseDTO> findHistoryForUserDTO(Long idUser){
-        return userRentHistoryRepository.findHistoryForUserDTO(idUser);
+    public List<UserRentHistoryResponse> findAllHistoryForUser(Long idUser){
+        return userRentHistoryRepository.findAllHistoryForUser(idUser);
     }
 }

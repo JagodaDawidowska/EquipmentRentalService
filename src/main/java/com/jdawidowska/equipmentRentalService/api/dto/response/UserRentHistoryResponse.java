@@ -3,17 +3,16 @@ package com.jdawidowska.equipmentRentalService.api.dto.response;
 import java.util.Date;
 
 public class UserRentHistoryResponse {
-
     private String itemName;
     private Date rentDate;
     private Date returnDate;
-    private Long idUser;
+    private String email;
 
-    public UserRentHistoryResponse(Long idUser, String itemName, Date rentDate, Date returnDate) {
+    public UserRentHistoryResponse(String email, String itemName, Date rentDate, Date returnDate) {
         this.itemName = itemName;
         this.rentDate = rentDate;
         this.returnDate = returnDate;
-        this.idUser = idUser;
+        this.email = email;
     }
 
     public UserRentHistoryResponse() {
@@ -25,14 +24,6 @@ public class UserRentHistoryResponse {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
     }
 
     public Date getRentDate() {
@@ -50,4 +41,14 @@ public class UserRentHistoryResponse {
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }

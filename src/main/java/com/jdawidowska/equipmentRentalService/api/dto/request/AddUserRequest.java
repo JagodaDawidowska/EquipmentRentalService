@@ -2,7 +2,7 @@ package com.jdawidowska.equipmentRentalService.api.dto.request;
 
 import com.jdawidowska.equipmentRentalService.model.Role;
 
-public class UserRequest {
+public class AddUserRequest {
 
     private final String name;
     private final String surname;
@@ -10,7 +10,7 @@ public class UserRequest {
     private final String password;
     private final Role role;
 
-    public UserRequest(String name, String surname, String email, String password, Role role) {
+    public AddUserRequest(String name, String surname, String email, String password, Role role) {
         this.name = name;
         this.surname = surname;
         this.email = email;

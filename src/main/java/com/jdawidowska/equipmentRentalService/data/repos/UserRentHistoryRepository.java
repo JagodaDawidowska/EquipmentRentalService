@@ -1,7 +1,7 @@
 package com.jdawidowska.equipmentRentalService.data.repos;
 
+import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseUnused;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseDTO;
 import com.jdawidowska.equipmentRentalService.data.entities.UserRentHistory;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -23,21 +23,21 @@ public interface UserRentHistoryRepository extends CrudRepository<UserRentHistor
 
     @Transactional
     @Modifying
-    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse(UR.idUser, I.itemName, UR.rentDate ,UR.returnDate) " +
+    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseUnused(UR.idUser, I.itemName, UR.rentDate ,UR.returnDate) " +
             "FROM UserRentHistory AS UR " +
             "JOIN Inventory AS I " +
             "ON UR.idItem = I.id " +
             "WHERE UR.idUser = :idUser ")
-    public List<UserRentHistoryResponse> findHistoryForUser(Long idUser);
+    public List<UserRentHistoryResponseUnused> findHistoryForUser(Long idUser);
 
     @Transactional
     @Modifying
-    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseDTO(U.email, I.itemName, UR.rentDate ,UR.returnDate) " +
+    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse(U.email, I.itemName, UR.rentDate ,UR.returnDate) " +
             "FROM UserRentHistory AS UR " +
             "JOIN Inventory AS I " +
             "ON UR.idItem = I.id " +
             "JOIN User AS U " +
             "ON UR.idUser = U.id "+
             "WHERE UR.idUser = :idUser ")
-    public List<UserRentHistoryResponseDTO> findHistoryForUserDTO(Long idUser);
+    List<UserRentHistoryResponse> findAllHistoryForUser(Long idUser);
 }

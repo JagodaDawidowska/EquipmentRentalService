@@ -1,24 +1,21 @@
 package com.jdawidowska.equipmentRentalService.api.dto.response;
 
-public class FeedbackResponse {
+public class FeedbackResponseUnused {
 
-    private String email;
+    private Long idUser;
     private String content;
 
-    public FeedbackResponse() {
-    }
-
-    public FeedbackResponse(String email, String content) {
-        this.email = email;
+    public FeedbackResponseUnused(Long idUser, String content) {
+        this.idUser = idUser;
         this.content = content;
     }
 
-    public String getEmail() {
-        return email;
+    public Long getIdUser() {
+        return idUser;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public String getContent() {
@@ -29,10 +26,13 @@ public class FeedbackResponse {
         this.content = content;
     }
 
+    public FeedbackResponseUnused() {
+    }
+
     @Override
     public String toString() {
         return "FeedbackResponse{" +
-                "email='" + email + '\'' +
+                "idUser=" + idUser +
                 ", content='" + content + '\'' +
                 '}';
     }

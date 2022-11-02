@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.RentingRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.RentRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.request.ReturnRequest;
 import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.entities.Inventory;
@@ -30,26 +30,26 @@ public class RentingService {
     }
 
     @Transactional
-    public boolean rent(RentingRequest rentingRequest) {
+    public boolean rentItem(RentRequest rentRequest) {
 
         //
         // znajdujemy konkretny equipment przez ID
         //
-        Inventory inventory = inventoryRepository.findById(rentingRequest.getIdItem()).orElse(null);
+        Inventory inventory = inventoryRepository.findById(rentRequest.getIdItem()).orElse(null);
         if (inventory == null || inventory.getAvailableAmount() <= 0) {
             return false;
         }
         //
         // wypozyczamy go (zmniejszamy ilosc dostepnych)
         //
-        inventoryRepository.rentItem(rentingRequest.getIdItem());
+        inventoryRepository.rentItem(rentRequest.getIdItem());
 
         //
         // dodajemy wpis do historii o wypozyczeniu -> id historii potrzebujemy do wpisania w tabeli wypozyczen
         //
         UserRentHistory history = new UserRentHistory();
-        history.setIdUser(rentingRequest.getIdUser());
-        history.setIdItem(rentingRequest.getIdItem());
+        history.setIdUser(rentRequest.getIdUser());
+        history.setIdItem(rentRequest.getIdItem());
         history.setRentDate(DateUtil.getCurrentDate());
 
         UserRentHistory historyWithGeneratedID = userRentHistoryRepository.save(history);
@@ -57,14 +57,14 @@ public class RentingService {
         //
         // dodajemy wpis do tabeli wypozyczen
         //jesli dany uzytkownik juz wypozyczyl item z takim idItem to zabdejtuj liczbe wypożyczonych itemów
-        if (rentedInventoryRepository.existsByIdUserAndIdItem(rentingRequest.getIdUser(), rentingRequest.getIdItem())) {
-            Long requiredId = rentedInventoryRepository.getIdRentedInventoryByIdUserAndIdItem(rentingRequest.getIdUser(), rentingRequest.getIdItem());
+        if (rentedInventoryRepository.existsByIdUserAndIdItem(rentRequest.getIdUser(), rentRequest.getIdItem())) {
+            Long requiredId = rentedInventoryRepository.getIdRentedInventoryByIdUserAndIdItem(rentRequest.getIdUser(), rentRequest.getIdItem());
             rentedInventoryRepository.doIncrementAmount(requiredId);
             return true;
         } else {
             RentedInventory rentedInventory = new RentedInventory();
-            rentedInventory.setIdUser(rentingRequest.getIdUser());
-            rentedInventory.setIdItem(rentingRequest.getIdItem());
+            rentedInventory.setIdUser(rentRequest.getIdUser());
+            rentedInventory.setIdItem(rentRequest.getIdItem());
             rentedInventory.setIdHistory(historyWithGeneratedID.getId());
             rentedInventory.setAmount(1);
             rentedInventoryRepository.save(rentedInventory);

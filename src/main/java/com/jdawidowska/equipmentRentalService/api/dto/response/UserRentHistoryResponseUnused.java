@@ -2,20 +2,21 @@ package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 import java.util.Date;
 
-public class UserRentHistoryResponseDTO {
+public class UserRentHistoryResponseUnused {
+
     private String itemName;
     private Date rentDate;
     private Date returnDate;
-    private String email;
+    private Long idUser;
 
-    public UserRentHistoryResponseDTO( String email,String itemName, Date rentDate, Date returnDate) {
+    public UserRentHistoryResponseUnused(Long idUser, String itemName, Date rentDate, Date returnDate) {
         this.itemName = itemName;
         this.rentDate = rentDate;
         this.returnDate = returnDate;
-        this.email = email;
+        this.idUser = idUser;
     }
 
-    public UserRentHistoryResponseDTO() {
+    public UserRentHistoryResponseUnused() {
     }
 
     public String getItemName() {
@@ -24,6 +25,14 @@ public class UserRentHistoryResponseDTO {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public Date getRentDate() {
@@ -41,14 +50,4 @@ public class UserRentHistoryResponseDTO {
     public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
 }

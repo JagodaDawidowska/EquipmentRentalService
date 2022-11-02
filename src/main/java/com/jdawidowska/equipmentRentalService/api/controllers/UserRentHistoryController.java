@@ -1,7 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseDTO;
 import com.jdawidowska.equipmentRentalService.data.entities.UserRentHistory;
 import com.jdawidowska.equipmentRentalService.services.UserRentHistoryService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,17 +19,20 @@ public class UserRentHistoryController {
         this.userRentHistoryService = userRentHistoryService;
     }
 
-    @GetMapping()
-    public Iterable<UserRentHistory> findAll(){
+    /*@GetMapping()
+    public Iterable<UserRentHistory> findAll() {
         return userRentHistoryService.findAll();
-    }
+    }*/
 
+    /*
     @GetMapping("/user/{idUser}")
-    public List<UserRentHistoryResponse> findUserHistory(@PathVariable("idUser") Long idUser){
+    public List<UserRentHistoryResponse> findUserHistory(@PathVariable("idUser") Long idUser) {
         return userRentHistoryService.findUserHistory(idUser);
     }
-@GetMapping("/user/DTO/{idUser}")
-    public List<UserRentHistoryResponseDTO> findHistoryForUserDTO(@PathVariable("idUser") Long idUser){
-        return userRentHistoryService.findHistoryForUserDTO(idUser);
+    */
+
+    @GetMapping("/user/{idUser}")
+    public List<UserRentHistoryResponse> findAllHistoryForUser(@PathVariable("idUser") Long idUser) {
+        return userRentHistoryService.findAllHistoryForUser(idUser);
     }
 }

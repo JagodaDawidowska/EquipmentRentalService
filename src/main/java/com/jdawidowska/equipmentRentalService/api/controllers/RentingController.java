@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.RentingRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.RentRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.request.ReturnRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RentingEnum;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RentingResponse;
@@ -21,8 +21,8 @@ public class RentingController {
 
     @PostMapping
     @RequestMapping("/rent")
-    public ResponseEntity<RentingResponse> rentEquipment(@RequestBody RentingRequest rentingRequest) {
-        if (rentingService.rent(rentingRequest) == true) {
+    public ResponseEntity<RentingResponse> rentEquipment(@RequestBody RentRequest rentRequest) {
+        if (rentingService.rentItem(rentRequest) == true) {
             RentingResponse correctResponse = new RentingResponse(RentingEnum.RENT_SUCCESS);
             return new ResponseEntity<>(correctResponse, HttpStatus.OK);
         } else {

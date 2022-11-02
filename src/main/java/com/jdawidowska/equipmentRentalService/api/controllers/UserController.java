@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.UserRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.AddUserRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterEnum;
 import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterResponse;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserResponse;
@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterResponse> register(@RequestBody UserRequest userRequest){
-        if( userService.addUser(userRequest)){
+    public ResponseEntity<RegisterResponse> register(@RequestBody AddUserRequest addUserRequest){
+        if( userService.addUser(addUserRequest)){
             RegisterResponse correctResponse = new RegisterResponse(RegisterEnum.USER_REGISTED);
             return new ResponseEntity<>(correctResponse,HttpStatus.OK );
         }else {

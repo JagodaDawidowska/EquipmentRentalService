@@ -1,8 +1,7 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.RentedInventoryResponse;
-import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedResponse;
-import com.jdawidowska.equipmentRentalService.data.entities.RentedInventory;
+import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedItemResponse;
 import com.jdawidowska.equipmentRentalService.services.RentedInventoryService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,18 +17,20 @@ public class RentedInventoryController {
         this.rentedInventoryService = rentedInventoryService;
     }
 
+    /*
     @GetMapping()
     public List<RentedInventory> findAll(){
         return rentedInventoryService.findAll();
     }
+    */
 
-    @GetMapping("/user/{idUser}")
-    public List<UserRentedResponse> findEquipmentRentedByUser(@PathVariable("idUser") Long idUser){
-        return rentedInventoryService.findEquipmentRentedByUser(idUser);
+    @GetMapping()
+    public List<RentedInventoryResponse> findAllRentedInventory(){
+        return rentedInventoryService.findAllRentedInventory();
     }
 
-    @GetMapping("/rentedInventoryResponse")
-    public List<RentedInventoryResponse> findRentedInventoryDTO(){
-        return rentedInventoryService.findRentedInventoryDTO();
+    @GetMapping("/user/{idUser}")
+    public List<UserRentedItemResponse> findEquipmentRentedByUser(@PathVariable("idUser") Long idUser){
+        return rentedInventoryService.findEquipmentRentedByUser(idUser);
     }
 }
