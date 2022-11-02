@@ -7,10 +7,14 @@ import javax.validation.constraints.NotNull;
 
 @RequiredArgsConstructor
 @Getter
-public class RentRequest {
+public class RegisterUserRequest {
 
     @NotNull
-    private long idUser;
+    private final String name;
     @NotNull
-    private long idItem;
+    private final String surname;
+    @NotNull
+    private final String email;
+    @NotNull
+    private final String password;
 }

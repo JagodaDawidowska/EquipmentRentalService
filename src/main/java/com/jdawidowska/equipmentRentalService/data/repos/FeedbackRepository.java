@@ -11,12 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface FeedbackRepository extends CrudRepository<Feedback,Long> {
+public interface FeedbackRepository extends CrudRepository<Feedback, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = " SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse " +
-            "(U.email, F.content) "+
+    @Query("SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse(U.email, F.content) " +
             "FROM Feedback AS F " +
             "JOIN User AS U " +
             "ON F.idUser = U.id ")

@@ -1,13 +1,10 @@
 package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponseUnused;
 import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse;
-import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
@@ -19,7 +16,7 @@ public class FeedbackService {
     }
 
     //For Admin FeedbackActivity
-    public List<FeedbackResponse> findAllFeedback(){
+    public List<FeedbackResponse> findAllFeedback() {
         return feedbackRepository.findAllFeedback();
     }
 

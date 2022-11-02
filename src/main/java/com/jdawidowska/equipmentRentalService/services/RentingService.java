@@ -10,6 +10,8 @@ import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.InventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.RentedInventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.UserRentHistoryRepository;
+import com.jdawidowska.equipmentRentalService.exception.ItemNotFoundException;
+import com.jdawidowska.equipmentRentalService.exception.RentHistoryNotFoundException;
 import com.jdawidowska.equipmentRentalService.util.DateUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,14 +32,14 @@ public class RentingService {
     }
 
     @Transactional
-    public boolean rentItem(RentRequest rentRequest) {
+    public void rentItem(RentRequest rentRequest) throws ItemNotFoundException {
 
         //
         // znajdujemy konkretny equipment przez ID
         //
         Inventory inventory = inventoryRepository.findById(rentRequest.getIdItem()).orElse(null);
         if (inventory == null || inventory.getAvailableAmount() <= 0) {
-            return false;
+            throw new ItemNotFoundException();
         }
         //
         // wypozyczamy go (zmniejszamy ilosc dostepnych)
@@ -56,30 +58,28 @@ public class RentingService {
 
         //
         // dodajemy wpis do tabeli wypozyczen
-        //jesli dany uzytkownik juz wypozyczyl item z takim idItem to zabdejtuj liczbe wypożyczonych itemów
+        // jesli dany uzytkownik juz wypozyczyl item z takim idItem to zapdejtuj liczbe wypożyczonych itemów
+        //
         if (rentedInventoryRepository.existsByIdUserAndIdItem(rentRequest.getIdUser(), rentRequest.getIdItem())) {
             Long requiredId = rentedInventoryRepository.getIdRentedInventoryByIdUserAndIdItem(rentRequest.getIdUser(), rentRequest.getIdItem());
-            rentedInventoryRepository.doIncrementAmount(requiredId);
-            return true;
+            rentedInventoryRepository.incrementAmount(requiredId);
         } else {
             RentedInventory rentedInventory = new RentedInventory();
             rentedInventory.setIdUser(rentRequest.getIdUser());
             rentedInventory.setIdItem(rentRequest.getIdItem());
             rentedInventory.setIdHistory(historyWithGeneratedID.getId());
-            rentedInventory.setAmount(1);
+            rentedInventory.setAmount(1); //TODO
             rentedInventoryRepository.save(rentedInventory);
         }
-
-        return true;
     }
 
     @Transactional
-    public boolean returnItem(ReturnRequest returnRequest) {
+    public void returnItem(ReturnRequest returnRequest) throws ItemNotFoundException, RentHistoryNotFoundException {
         //1
         //Sprawdzamy czy dany record istnieje w RentedInventory, jesli istnieje zwracamy przedimot, jelsi nie zwracamy false
         RentedInventory rentedInventory = rentedInventoryRepository.findById(returnRequest.getIdRentedInventory()).orElse(null);
         if (rentedInventory == null) {
-            return false;
+            throw new ItemNotFoundException();
         }
         inventoryRepository.returnItem(rentedInventory.getIdItem());
 
@@ -87,19 +87,19 @@ public class RentingService {
         //dodajemy do history date oddania itemu
         UserRentHistory userRentHistory = userRentHistoryRepository.findById(rentedInventory.getIdHistory()).orElse(null);
         if (userRentHistory == null) {
-            return false;
+            throw new RentHistoryNotFoundException();
         }
         userRentHistoryRepository.updateReturnDate(rentedInventory.getIdHistory(), DateUtil.getCurrentDate());
 
         //3
         //usuwamy ilosc wypozyczonych rzeczy w RentedInventory
-        Integer amountRentedInventory = rentedInventory.getAmount();
+        Integer rentedInventoryAmount = rentedInventory.getAmount();
         //jesli ilosc rzeczy jest wieksza od zera to zmiejszamy ilosc o 1
-        if (amountRentedInventory == 1) {
+        if (rentedInventoryAmount == 1) {
             //jesli ilosc jest mniejsza od zera usuwamy caly record
             rentedInventoryRepository.deleteById(rentedInventory.getId());
         } else {
-            rentedInventoryRepository.doDecreaseAmount(rentedInventory.getId());
+            rentedInventoryRepository.decreaseAmount(rentedInventory.getId());
         }
 
         //4
@@ -110,6 +110,5 @@ public class RentingService {
             feedback.setContent(returnRequest.getFeedback());
             feedbackRepository.save(feedback);
         }
-        return true;
     }
 }

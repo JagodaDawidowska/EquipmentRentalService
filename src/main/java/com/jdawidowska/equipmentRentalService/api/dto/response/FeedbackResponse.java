@@ -2,38 +2,11 @@ package com.jdawidowska.equipmentRentalService.api.dto.response;
 
 public class FeedbackResponse {
 
-    private String email;
-    private String content;
-
-    public FeedbackResponse() {
-    }
+    private final String email;
+    private final String content;
 
     public FeedbackResponse(String email, String content) {
         this.email = email;
         this.content = content;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "FeedbackResponse{" +
-                "email='" + email + '\'' +
-                ", content='" + content + '\'' +
-                '}';
     }
 }

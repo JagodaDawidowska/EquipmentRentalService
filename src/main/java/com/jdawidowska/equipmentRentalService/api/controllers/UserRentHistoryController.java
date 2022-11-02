@@ -1,7 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse;
-import com.jdawidowska.equipmentRentalService.data.entities.UserRentHistory;
 import com.jdawidowska.equipmentRentalService.services.UserRentHistoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +18,17 @@ public class UserRentHistoryController {
         this.userRentHistoryService = userRentHistoryService;
     }
 
-    /*@GetMapping()
+    @GetMapping("/user/{idUser}")
+    public List<UserRentHistoryResponse> findAllHistoryForUser(@PathVariable("idUser") Long idUser) {
+        return userRentHistoryService.findAllHistoryForUser(idUser);
+    }
+
+    /*
+    @GetMapping()
     public Iterable<UserRentHistory> findAll() {
         return userRentHistoryService.findAll();
-    }*/
+    }
+    */
 
     /*
     @GetMapping("/user/{idUser}")
@@ -30,9 +36,4 @@ public class UserRentHistoryController {
         return userRentHistoryService.findUserHistory(idUser);
     }
     */
-
-    @GetMapping("/user/{idUser}")
-    public List<UserRentHistoryResponse> findAllHistoryForUser(@PathVariable("idUser") Long idUser) {
-        return userRentHistoryService.findAllHistoryForUser(idUser);
-    }
 }

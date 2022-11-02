@@ -1,17 +1,18 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.AddUserRequest;
-import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterEnum;
-import com.jdawidowska.equipmentRentalService.api.dto.response.RegisterResponse;
+import com.jdawidowska.equipmentRentalService.api.dto.request.RegisterUserRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.response.UserResponse;
+import com.jdawidowska.equipmentRentalService.exception.UserAlreadyExistsException;
 import com.jdawidowska.equipmentRentalService.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
 
     private final UserService userService;
@@ -20,19 +21,18 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<RegisterResponse> register(@RequestBody AddUserRequest addUserRequest){
-        if( userService.addUser(addUserRequest)){
-            RegisterResponse correctResponse = new RegisterResponse(RegisterEnum.USER_REGISTED);
-            return new ResponseEntity<>(correctResponse,HttpStatus.OK );
-        }else {
-            RegisterResponse errorResponse = new RegisterResponse(RegisterEnum.EMAIL_ALREADY_EXISTS);
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
+    @GetMapping("/users")
+    public List<UserResponse> findAllUserResponse() {
+        return userService.findAllUserResponse();
     }
 
-    @GetMapping()
-    public List<UserResponse> findAllUserResponse(){
-        return userService.findAllUserResponse();
+    @PostMapping("/register")
+    public ResponseEntity<Void> register(@RequestBody @Valid RegisterUserRequest registerUserRequest) {
+        try {
+            userService.registerUser(registerUserRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (UserAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 }

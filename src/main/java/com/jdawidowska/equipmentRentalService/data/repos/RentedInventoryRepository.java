@@ -16,43 +16,47 @@ public interface RentedInventoryRepository extends CrudRepository<RentedInventor
 
     @Transactional
     @Modifying
-    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedItemResponse(R.id, I.itemName, R.amount) " +
+    @Query("SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentedItemResponse(R.id, I.itemName, R.amount) " +
             "FROM RentedInventory AS R " +
             "JOIN Inventory AS I " +
             "ON R.idItem = I.id " +
             "WHERE R.idUser = :idUser ")
-    public List<UserRentedItemResponse> findEquipmentRentedByUser(Long idUser);
+    List<UserRentedItemResponse> findEquipmentRentedByUser(Long idUser);
 
     @Transactional
     @Modifying
-    @Query(value = " SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.RentedInventoryResponse " +
-                    "(U.name, U.surname, I.itemName, R.amount) "+
-                    "FROM RentedInventory AS R " +
-                    "JOIN User AS U " +
-                    "ON R.idUser = U.id " +
-                    "JOIN Inventory AS I " +
-                    "ON R.idItem = I.id")
+    @Query(" SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.RentedInventoryResponse " +
+            "(U.name, U.surname, I.itemName, R.amount) " +
+            "FROM RentedInventory AS R " +
+            "JOIN User AS U " +
+            "ON R.idUser = U.id " +
+            "JOIN Inventory AS I " +
+            "ON R.idItem = I.id")
     List<RentedInventoryResponse> findAllRentedInventory();
 
+    boolean existsByIdUserAndIdItem(Long idUser, Long idItem);
+
+    @Transactional
+    @Query("SELECT id " +
+            "FROM RentedInventory " +
+            "WHERE idUser = :idUser " +
+            "AND idItem = :idItem")
+    Long getIdRentedInventoryByIdUserAndIdItem(Long idUser, Long idItem);
+
     @Transactional
     @Modifying
-    @Query(value = "UPDATE RentedInventory "
+    @Query("UPDATE RentedInventory "
             + "SET amount = amount + 1 "
             + "WHERE id = :id "
-            + "and amount >= 0")
-    public void doIncrementAmount(Long id);
-
-    @Query
-    public boolean existsByIdUserAndIdItem(Long idUser, Long idItem);
-
-    @Transactional
-    @Query(value = "SELECT id FROM RentedInventory where idUser =:idUser  and idItem=:idItem")
-    public Long getIdRentedInventoryByIdUserAndIdItem(Long idUser,Long idItem);
+            + "AND amount >= 0")
+    void incrementAmount(Long id);
 
     @Transactional
     @Modifying
-    @Query(value = "update  RentedInventory set amount =amount-1  where id =:idRentedInventory ")
-    public void doDecreaseAmount(Long idRentedInventory);
+    @Query("UPDATE RentedInventory " +
+            "SET amount = amount - 1  " +
+            "WHERE id = :idRentedInventory ")
+    void decreaseAmount(Long idRentedInventory);
 
 
 //    @Transactional

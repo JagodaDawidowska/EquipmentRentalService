@@ -4,17 +4,13 @@ import lombok.*;
 import javax.persistence.*;
 
 @Data
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 @Entity
 public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String itemName;
-    Integer totalAmount;
-    Integer availableAmount;
+    private Long id;
+    private String itemName;
+    private Integer totalAmount;
+    private Integer availableAmount;
 }

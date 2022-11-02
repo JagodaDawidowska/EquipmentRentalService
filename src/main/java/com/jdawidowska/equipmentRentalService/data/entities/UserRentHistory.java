@@ -9,10 +9,6 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 @Data
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 @Entity
 public class UserRentHistory {
 
