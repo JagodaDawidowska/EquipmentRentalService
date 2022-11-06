@@ -51,6 +51,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withClaim("roles", user.getAuthorities().stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
+                .withClaim("userId", user.getId())
+                .withClaim("name", user.getName())
                 .sign(algorithm);
 
         response.setHeader("accessToken", accessToken);

@@ -24,15 +24,15 @@ public class UserService {
     }
 
     public void registerUser(RegisterUserRequest registerUserRequest) throws UserAlreadyExistsException {
-        User user = new User();
-
-        user.setName(registerUserRequest.getName());
-        user.setSurname(registerUserRequest.getSurname());
-        user.setEmail(registerUserRequest.getEmail());
-        user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
-        user.setRole(Role.USER);
-
         if (!userRepository.existsByEmail(registerUserRequest.getEmail())) {
+            User user = new User();
+
+            user.setName(registerUserRequest.getName());
+            user.setSurname(registerUserRequest.getSurname());
+            user.setEmail(registerUserRequest.getEmail());
+            user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
+            user.setRole(Role.USER);
+
             userRepository.save(user);
         } else {
             throw new UserAlreadyExistsException();
