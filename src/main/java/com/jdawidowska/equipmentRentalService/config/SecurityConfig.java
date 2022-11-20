@@ -41,13 +41,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/api/inventory").authenticated()
-                .antMatchers("/api/inventory/add").hasRole(Role.ADMIN.toString())
-                .antMatchers("/api/inventory/remove/**").hasRole(Role.ADMIN.toString())
-                .antMatchers("/api/rentedInventory").hasRole(Role.ADMIN.toString())
+                .antMatchers("/api/inventory/add").hasAuthority(Role.ADMIN.toString())
+                .antMatchers("/api/inventory/remove/**").hasAuthority(Role.ADMIN.toString())
+                .antMatchers("/api/rentedInventory").hasAuthority(Role.ADMIN.toString())
                 .antMatchers("/api/rentedInventory/user/**").authenticated()
                 .antMatchers("/api/renting/rent").authenticated()
                 .antMatchers("/api/renting/return").authenticated()
-                .antMatchers("/api/users").hasRole(Role.ADMIN.toString())
+                .antMatchers("/api/users").hasAuthority(Role.ADMIN.toString())
                 .antMatchers("/api/history/user/**").authenticated();
 
         http.addFilter(customAuthenticationFilter);
@@ -84,6 +84,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public int tokenLifetime() {
-        return 1 * 30 * 1000; //TODO move to app props
+        return 10 * 60 * 1000; //TODO move to app props
     }
 }

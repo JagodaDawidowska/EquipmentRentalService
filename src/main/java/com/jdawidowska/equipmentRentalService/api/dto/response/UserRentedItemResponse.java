@@ -11,4 +11,16 @@ public class UserRentedItemResponse {
         this.name = name;
         this.amount = amount;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

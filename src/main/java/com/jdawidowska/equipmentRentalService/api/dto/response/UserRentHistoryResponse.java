@@ -14,4 +14,20 @@ public class UserRentHistoryResponse {
         this.returnDate = returnDate;
         this.email = email;
     }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public Date getRentDate() {
+        return rentDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
