@@ -13,4 +13,20 @@ public class RentedInventoryResponse {
         this.equipment = equipment;
         this.amount = amount;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }

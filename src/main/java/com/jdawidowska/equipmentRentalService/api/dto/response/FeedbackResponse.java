@@ -9,4 +9,12 @@ public class FeedbackResponse {
         this.email = email;
         this.content = content;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

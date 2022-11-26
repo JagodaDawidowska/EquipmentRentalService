@@ -31,6 +31,7 @@ public class UserService {
             user.setSurname(registerUserRequest.getSurname());
             user.setEmail(registerUserRequest.getEmail());
             user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
+            user.setAddress(registerUserRequest.getAddress());
             user.setRole(Role.USER);
 
             userRepository.save(user);
@@ -44,6 +45,7 @@ public class UserService {
         userResponse.setId(user.getId());
         userResponse.setName(user.getName());
         userResponse.setSurname(user.getSurname());
+        userResponse.setAddress(user.getAddress());
         return userResponse;
     }
 

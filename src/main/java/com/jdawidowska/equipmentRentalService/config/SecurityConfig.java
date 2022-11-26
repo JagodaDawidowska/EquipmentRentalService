@@ -48,7 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/renting/rent").authenticated()
                 .antMatchers("/api/renting/return").authenticated()
                 .antMatchers("/api/users").hasAuthority(Role.ADMIN.toString())
-                .antMatchers("/api/history/user/**").authenticated();
+                .antMatchers("/api/history/user/**").authenticated()
+                .antMatchers("/api/feedback").hasAuthority(Role.ADMIN.toString());
 
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(algorithm()), UsernamePasswordAuthenticationFilter.class);

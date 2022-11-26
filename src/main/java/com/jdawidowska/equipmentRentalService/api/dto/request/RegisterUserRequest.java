@@ -17,4 +17,6 @@ public class RegisterUserRequest {
     private final String email;
     @NotNull
     private final String password;
+    @NotNull
+    private final String address;
 }
