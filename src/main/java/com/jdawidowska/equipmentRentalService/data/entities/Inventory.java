@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Inventory {
 
     @Id
