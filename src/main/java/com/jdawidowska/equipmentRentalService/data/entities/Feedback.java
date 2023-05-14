@@ -7,12 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
 @Data
-@RequiredArgsConstructor
-@Getter
-@Setter
-@ToString
+@Entity
 public class Feedback {
 
     @Id
@@ -20,9 +16,4 @@ public class Feedback {
     private Long id;
     private Long idUser;
     private String content;
-
-    public Feedback(Long idUser, String content) {
-        this.idUser = idUser;
-        this.content = content;
-    }
 }

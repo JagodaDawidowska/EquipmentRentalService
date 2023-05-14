@@ -18,14 +18,24 @@ public interface UserRentHistoryRepository extends CrudRepository<UserRentHistor
     @Query("UPDATE UserRentHistory " +
             "SET returnDate = :returnDate " +
             "WHERE id = :idHistory")
-    public void updateReturnDate(Long idHistory, Date returnDate);
+    void updateReturnDate(Long idHistory, Date returnDate);
 
     @Transactional
+    @Query("SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse(U.email, I.itemName, UR.rentDate ,UR.returnDate) " +
+            "FROM UserRentHistory AS UR " +
+            "JOIN Inventory AS I " +
+            "ON UR.idItem = I.id " +
+            "JOIN User AS U " +
+            "ON UR.idUser = U.id " +
+            "WHERE UR.idUser = :idUser ")
+    List<UserRentHistoryResponse> findAllHistoryForUser(Long idUser);
+
+    /*@Transactional
     @Modifying
-    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponse(UR.idUser, I.itemName, UR.rentDate ,UR.returnDate) " +
+    @Query(value = "SELECT new com.jdawidowska.equipmentRentalService.api.dto.response.UserRentHistoryResponseUnused(UR.idUser, I.itemName, UR.rentDate ,UR.returnDate) " +
             "FROM UserRentHistory AS UR " +
             "JOIN Inventory AS I " +
             "ON UR.idItem = I.id " +
             "WHERE UR.idUser = :idUser ")
-    public List<UserRentHistoryResponse> findHistoryForUser(Long idUser);
+    List<UserRentHistoryResponseUnused> findHistoryForUser(Long idUser);*/
 }

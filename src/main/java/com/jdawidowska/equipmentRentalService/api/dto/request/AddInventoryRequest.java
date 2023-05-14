@@ -7,10 +7,10 @@ import javax.validation.constraints.NotNull;
 
 @RequiredArgsConstructor
 @Getter
-public class ReturnRequest {
+public class AddInventoryRequest {
 
     @NotNull
-    private Long idRentedInventory;
+    private final String itemName;
     @NotNull
-    private String feedback;
+    private final Integer totalAmount;
 }

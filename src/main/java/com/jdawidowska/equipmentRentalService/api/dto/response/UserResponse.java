@@ -5,14 +5,16 @@ public class UserResponse {
     private Long id;
     private String name;
     private String surname;
+    private String address;
 
-    public UserResponse(Long id, String name, String surname) {
+    public UserResponse() {
+    }
+
+    public UserResponse(Long id, String name, String surname, String address) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-    }
-
-    public UserResponse() {
+        this.address = address;
     }
 
     public Long getId() {
@@ -37,5 +39,13 @@ public class UserResponse {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -1,7 +1,6 @@
 package com.jdawidowska.equipmentRentalService.api.controllers;
 
 import com.jdawidowska.equipmentRentalService.api.dto.response.FeedbackResponse;
-import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.services.FeedbackService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +18,13 @@ public class FeedbackController {
         this.feedbackService = feedbackService;
     }
 
+    //For Admin FeedbackActivity
+    @GetMapping()
+    public List<FeedbackResponse> findAllFeedback() {
+        return feedbackService.findAllFeedback();
+    }
+
+    /*
     @GetMapping
     public Iterable<Feedback> findAll() {
         return feedbackService.findAll();
@@ -33,5 +39,5 @@ public class FeedbackController {
         // return usersLocation
         return feedbackResponses;
     }
-
+    */
 }

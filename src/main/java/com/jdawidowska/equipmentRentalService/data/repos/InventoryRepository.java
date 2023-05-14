@@ -8,21 +8,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface InventoryRepository extends CrudRepository<Inventory, Long>{
+public interface InventoryRepository extends CrudRepository<Inventory, Long> {
 
     @Transactional
     @Modifying
-    @Query(value="UPDATE Inventory "
-            + "SET available_Amount = available_Amount - 1 "
-            + "WHERE id = :id "
-            + "AND available_Amount > 0")
-    public void rentItem(Long id);
+    @Query("UPDATE Inventory " +
+            "SET availableAmount = availableAmount - 1 " +
+            "WHERE id = :id " +
+            "AND availableAmount > 0")
+    void rentItem(Long id);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE Inventory "
-    + "SET available_Amount = available_Amount + 1 "
-    + "WHERE id = :id "
-    + "and available_Amount >= 0")
-    public void returnItem(Long id);
+    @Query("UPDATE Inventory " +
+            "SET availableAmount = availableAmount + 1 " +
+            "WHERE id = :id " +
+            "AND availableAmount < totalAmount")
+    void returnItem(Long id);
 }

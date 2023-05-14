@@ -4,19 +4,15 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
 @Data
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
+@Entity
 public class RentedInventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long idHistory;
-    Long idUser;
-    Long idItem;
-    Integer amount;
+    private Long id;
+    private Long idHistory;
+    private Long idUser;
+    private Long idItem;
+    private Integer amount;
 }

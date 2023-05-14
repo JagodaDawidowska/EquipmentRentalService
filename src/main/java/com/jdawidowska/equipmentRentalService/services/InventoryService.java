@@ -1,8 +1,9 @@
 package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.InventoryRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.AddInventoryRequest;
 import com.jdawidowska.equipmentRentalService.data.entities.Inventory;
 import com.jdawidowska.equipmentRentalService.data.repos.InventoryRepository;
+import com.jdawidowska.equipmentRentalService.exception.ItemNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,21 +19,21 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
-    public boolean add(InventoryRequest inventoryRequest) {
-      Inventory inventory = new Inventory();
-      inventory.setItemName(inventoryRequest.getItemName());
-      inventory.setTotalAmount(inventoryRequest.getTotalAmount());
-      inventory.setAvailableAmount(inventoryRequest.getAvailableAmount());
-      inventoryRepository.save(inventory);
-      return true;
+    public void addItem(AddInventoryRequest addInventoryRequest) {
+        Inventory inventory = new Inventory();
+        inventory.setItemName(addInventoryRequest.getItemName());
+        inventory.setTotalAmount(addInventoryRequest.getTotalAmount());
+        inventory.setAvailableAmount(addInventoryRequest.getTotalAmount());
+        inventoryRepository.save(inventory);
     }
 
-    public boolean remove(Long idItem){
+    public void removeItem(Long idItem) throws ItemNotFoundException {
         Inventory inventory = inventoryRepository.findById(idItem).orElse(null);
-        if(inventory != null && inventory.getAvailableAmount() == inventory.getTotalAmount()) {
+        if (inventory != null && inventory.getAvailableAmount().equals(inventory.getTotalAmount())) {
             inventoryRepository.deleteById(inventory.getId());
-            return true;
-        } else return false;
+        } else {
+            throw new ItemNotFoundException();
+        }
     }
 }
 

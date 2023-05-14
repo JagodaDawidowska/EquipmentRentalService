@@ -1,6 +1,6 @@
 package com.jdawidowska.equipmentRentalService.services;
 
-import com.jdawidowska.equipmentRentalService.api.dto.request.RentingRequest;
+import com.jdawidowska.equipmentRentalService.api.dto.request.RentRequest;
 import com.jdawidowska.equipmentRentalService.api.dto.request.ReturnRequest;
 import com.jdawidowska.equipmentRentalService.data.entities.Feedback;
 import com.jdawidowska.equipmentRentalService.data.entities.Inventory;
@@ -10,11 +10,11 @@ import com.jdawidowska.equipmentRentalService.data.repos.FeedbackRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.InventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.RentedInventoryRepository;
 import com.jdawidowska.equipmentRentalService.data.repos.UserRentHistoryRepository;
+import com.jdawidowska.equipmentRentalService.exception.ItemNotFoundException;
+import com.jdawidowska.equipmentRentalService.exception.RentHistoryNotFoundException;
 import com.jdawidowska.equipmentRentalService.util.DateUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Date;
 
 @Service
 public class RentingService {
@@ -32,64 +32,83 @@ public class RentingService {
     }
 
     @Transactional
-    public boolean rent(RentingRequest rentingRequest) {
+    public void rentItem(RentRequest rentRequest) throws ItemNotFoundException {
 
         //
         // znajdujemy konkretny equipment przez ID
         //
-        Inventory inventory = inventoryRepository.findById(rentingRequest.getIdItem()).orElse(null);
+        Inventory inventory = inventoryRepository.findById(rentRequest.getIdItem()).orElse(null);
         if (inventory == null || inventory.getAvailableAmount() <= 0) {
-            return false;
+            throw new ItemNotFoundException();
         }
         //
         // wypozyczamy go (zmniejszamy ilosc dostepnych)
         //
-        inventoryRepository.rentItem(rentingRequest.getIdItem());
+        inventoryRepository.rentItem(rentRequest.getIdItem());
 
         //
         // dodajemy wpis do historii o wypozyczeniu -> id historii potrzebujemy do wpisania w tabeli wypozyczen
         //
         UserRentHistory history = new UserRentHistory();
-        history.setIdUser(rentingRequest.getIdUser());
-        history.setIdItem(rentingRequest.getIdItem());
+        history.setIdUser(rentRequest.getIdUser());
+        history.setIdItem(rentRequest.getIdItem());
         history.setRentDate(DateUtil.getCurrentDate());
 
         UserRentHistory historyWithGeneratedID = userRentHistoryRepository.save(history);
 
         //
         // dodajemy wpis do tabeli wypozyczen
+        // jesli dany uzytkownik juz wypozyczyl item z takim idItem to zapdejtuj liczbe wypożyczonych itemów
         //
-        RentedInventory rentedInventory = new RentedInventory();
-        rentedInventory.setIdUser(rentingRequest.getIdUser());
-        rentedInventory.setIdItem(rentingRequest.getIdItem());
-        rentedInventory.setAmount(1);
-        rentedInventory.setIdHistory(historyWithGeneratedID.getId());
-        rentedInventoryRepository.save(rentedInventory);
-
-        return true;
+        if (rentedInventoryRepository.existsByIdUserAndIdItem(rentRequest.getIdUser(), rentRequest.getIdItem())) {
+            Long requiredId = rentedInventoryRepository.getIdRentedInventoryByIdUserAndIdItem(rentRequest.getIdUser(), rentRequest.getIdItem());
+            rentedInventoryRepository.incrementAmount(requiredId);
+        } else {
+            RentedInventory rentedInventory = new RentedInventory();
+            rentedInventory.setIdUser(rentRequest.getIdUser());
+            rentedInventory.setIdItem(rentRequest.getIdItem());
+            rentedInventory.setIdHistory(historyWithGeneratedID.getId());
+            rentedInventory.setAmount(1); //TODO
+            rentedInventoryRepository.save(rentedInventory);
+        }
     }
 
     @Transactional
-    public boolean returnItem(ReturnRequest returnRequest) {
+    public void returnItem(ReturnRequest returnRequest) throws ItemNotFoundException, RentHistoryNotFoundException {
+        //1
+        //Sprawdzamy czy dany record istnieje w RentedInventory, jesli istnieje zwracamy przedimot, jelsi nie zwracamy false
         RentedInventory rentedInventory = rentedInventoryRepository.findById(returnRequest.getIdRentedInventory()).orElse(null);
-        if(rentedInventory == null){
-            return false;
+        if (rentedInventory == null) {
+            throw new ItemNotFoundException();
         }
         inventoryRepository.returnItem(rentedInventory.getIdItem());
+
+        //2
+        //dodajemy do history date oddania itemu
         UserRentHistory userRentHistory = userRentHistoryRepository.findById(rentedInventory.getIdHistory()).orElse(null);
-        if(userRentHistory == null){
-            return false;
+        if (userRentHistory == null) {
+            throw new RentHistoryNotFoundException();
         }
         userRentHistoryRepository.updateReturnDate(rentedInventory.getIdHistory(), DateUtil.getCurrentDate());
-        rentedInventoryRepository.deleteById(rentedInventory.getId());
 
-        if(returnRequest.getFeedback() != null && !returnRequest.getFeedback().isEmpty()){
+        //3
+        //usuwamy ilosc wypozyczonych rzeczy w RentedInventory
+        Integer rentedInventoryAmount = rentedInventory.getAmount();
+        //jesli ilosc rzeczy jest wieksza od zera to zmiejszamy ilosc o 1
+        if (rentedInventoryAmount == 1) {
+            //jesli ilosc jest mniejsza od zera usuwamy caly record
+            rentedInventoryRepository.deleteById(rentedInventory.getId());
+        } else {
+            rentedInventoryRepository.decreaseAmount(rentedInventory.getId());
+        }
+
+        //4
+        //zapisywanie feedbacku
+        if (returnRequest.getFeedback() != null && !returnRequest.getFeedback().isEmpty()) {
             Feedback feedback = new Feedback();
             feedback.setIdUser(rentedInventory.getIdUser());
             feedback.setContent(returnRequest.getFeedback());
             feedbackRepository.save(feedback);
         }
-
-        return true;
     }
 }
