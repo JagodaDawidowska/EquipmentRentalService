@@ -47,14 +47,14 @@ The functionalities the application fulfills:
 Project is: In progress (Unit tests).
 
 ## Structure
-![poprawionystuctSerwis drawio](https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/498e5b16-a65a-4487-b9c0-db0e8b1e722c)
+ <img src="https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/498e5b16-a65a-4487-b9c0-db0e8b1e722c" width="75%"  />
 
 ## Database
-![diagrambazy](https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/180a8c07-566c-460d-9966-45d90d8ae623)
+ <img src="https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/180a8c07-566c-460d-9966-45d90d8ae623" width="75%"  />
+
 
 ## SWAGGER
-![swagger](https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/eaa75b00-cf02-4cd6-8ae7-4414ea28cedf)
-
+ <img src="https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/eaa75b00-cf02-4cd6-8ae7-4414ea28cedf" width="75%"  />
 
 
 
