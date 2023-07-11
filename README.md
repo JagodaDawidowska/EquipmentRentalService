@@ -31,7 +31,7 @@ This backend includes:
 - JWT - Security
 - SWAGGER - Dynamic documentation
 - ORM - Hibernate
-- Lombok - Libary to help eliminate boiler plate code in models classes
+- Lombok - Libary to help eliminate boilerplate code in models classes
 
 ## Features
 The functionalities the application fulfills: 
