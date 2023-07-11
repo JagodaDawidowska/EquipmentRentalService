@@ -1,5 +1,5 @@
 # EquipmentRentalService
-backend service for my engineers thesis
+The backend service for my engineers thesis
 
 
 ## Table of Contents
