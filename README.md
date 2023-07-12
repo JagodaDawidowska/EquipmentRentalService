@@ -19,7 +19,7 @@ This backend includes:
 - ORM - JPA specification, and Hibernate implementation for managing database activities and generating unique database requests
 - modern project architecture
 - controllers and HTTP request handling
-- business logic to handle the functionalities of the application.
+- business logic to handle the functionalities of the application
 - dynamic documentation
 - DTO models
 
@@ -31,7 +31,7 @@ This backend includes:
 - JWT - Security
 - SWAGGER - Dynamic documentation
 - ORM - Hibernate
-- Lombok - Libary to help eliminate boilerplate code in models classes
+- Lombok - Libary to help eliminate boilerplate code in model classes
 
 ## Features
 The functionalities the application fulfills: 
@@ -47,7 +47,7 @@ The functionalities the application fulfills:
 Project is: In progress (Unit tests).
 
 ## Structure
- <img src="https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/498e5b16-a65a-4487-b9c0-db0e8b1e722c" width="75%"  />
+ <img src="https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/d10546f0-737f-43bf-9bde-3750328037d1" width="75%"  />
 
 ## Database
  <img src="https://github.com/JagodaDawidowska/EquipmentRentalService/assets/107955890/180a8c07-566c-460d-9966-45d90d8ae623" width="75%"  />
